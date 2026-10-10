@@ -199,7 +199,7 @@ States are listed for each component. "Phone" means below 1024px.
 
 ### 6.1 Header
 
-- **Name** "नीतू" (Tiro, ~40px desktop / 34px phone *(m)*) linking home, with the tagline "कहानियाँ, कविताएँ और उपन्यास" (`meta`, ink-soft) below.
+- **Name** "नीतू सिंह" (Tiro, ~40px desktop / 34px phone *(m)*) linking home, with the tagline "कहानियाँ, कविताएँ और उपन्यास" (`meta`, ink-soft) below.
 - **Nav:** मुखपृष्ठ · रचनाएँ · पुस्तकें · परिचय (Mukta 500–600, `ui`). Current section: ink text plus a 3px turmeric underline under the item, and `aria-current="page"`. Work pages count as रचनाएँ, book pages as पुस्तकें.
   - Desktop: inline, right of the name.
   - Phone: a visible 4-tab row under the name (equal widths, 48px tall). No hamburger.
@@ -215,8 +215,8 @@ On `--ink`, text `--on-walnut` / `--footer-text-soft`.
 
 - Name (Tiro) + tagline.
 - Nav: the 4 sections, as underlined links (2 columns on phone, 1 column on desktop).
-- **संपर्क:** email, "प्रतिलिपि पर नीतू" and other platform profile links, social links (from `author_profile`).
-- Hairline (`--footer-text-soft` at low opacity), then "© <year> नीतू। सभी रचनाओं के अधिकार लेखिका के पास सुरक्षित हैं।"
+- **संपर्क:** email, "प्रतिलिपि पर नीतू सिंह" and other platform profile links, social links (from `author_profile`).
+- Hairline (`--footer-text-soft` at low opacity), then "© <year> नीतू सिंह। सभी रचनाओं के अधिकार लेखिका के पास सुरक्षित हैं।"
 - Desktop: three columns (name | nav | contact). Phone: stacked.
 
 ### 6.3 Breadcrumb
@@ -273,7 +273,7 @@ Used when a work has no `cover_path`, and as the style for all list thumbnails.
 
 - Cloth fill by kind (§2), darker spine edge on the left (~10px, cloth darkened ~25%), thin inner rule inset ~10px (`--label-paper` at low opacity), and the book shadow (§4.5). Corners 2px spine / 6px fore-edge.
 - Pasted **label** (`--label-paper`) across the middle third: title (Tiro), a short centred rule, kind (Mukta `meta`).
-- Byline at the bottom in `--label-paper`: "नीतू", or "संपादक: <name>" for anthologies.
+- Byline at the bottom in `--label-paper`: "नीतू सिंह", or "संपादक: <name>" for anthologies.
 - Aspect ratio 2:3.
 
 | Size | Phone | Desktop |
@@ -319,7 +319,7 @@ Rows are separated by hairlines, with 24px vertical padding.
 | Genre chip (work page) | link to the filtered catalog, 44px tall, pill, paper-raised + border. |
 | Active-filter chip | button "<label> ✕" removing just that filter, 44px, pill. Accessible name "<label> हटाएँ". |
 | Jump link (books page) | 46px pill link with a cloth swatch + label + count. |
-| Contributor chip (anthology) | **non-interactive label** (a `<li>`, not a button): नीतू = walnut fill; featured co-authors = paper-raised + `--line` border (softer than buttons, no hover); "और N अन्य लेखक" = dashed border. |
+| Contributor chip (anthology) | **non-interactive label** (a `<li>`, not a button): नीतू सिंह = walnut fill; featured co-authors = paper-raised + `--line` border (softer than buttons, no hover); "और N अन्य लेखक" = dashed border. |
 
 ### 6.13 Form controls (catalog)
 
@@ -341,7 +341,7 @@ A `<dl>` in two columns: label (`meta`, ink-soft, ~90px) and value (`ui`, ink).
 
 - Series: भाग (count), पहला भाग (date), ताज़ा भाग (date of the latest part; omitted when there is only one), विषय.
 - Collection: प्रकाशक, प्रकाशन वर्ष, कविताएँ / कहानियाँ (count), ISBN.
-- Anthology: संपादक, लेखक ("नीतू और 27 अन्य"), प्रकाशक, प्रकाशन वर्ष.
+- Anthology: संपादक, लेखक ("नीतू सिंह और 27 अन्य"), प्रकाशक, प्रकाशन वर्ष.
 
 ### 6.16 Excerpt panel ("एक अंश")
 
@@ -349,7 +349,7 @@ Panel with a large turmeric opening quote mark (Tiro, ~48px), excerpt in Tiro `l
 
 ### 6.17 Quote (About)
 
-Turmeric quote mark, her words in Tiro `quote`, caption "नीतू" (`meta`). No panel. Hidden if empty.
+Turmeric quote mark, her words in Tiro `quote`, caption "नीतू सिंह" (`meta`). No panel. Hidden if empty.
 
 ### 6.18 Awards disclosure
 
@@ -388,7 +388,7 @@ Addresses: `/` home, `/works` catalog, `/work/<slug>` work, `/books` books list,
      - धारावाहिक उपन्यास → books page, series group (`/books#dharavahik`)
      - सुनने के लिए (ऑडियोबुक) → `?format=audiobook`
 6. Hairline. **पुस्तकें** ("छपी हुई किताबें, जिन्हें आप घर मँगा सकते हैं") + "सभी पुस्तकें देखें": book strip. Desktop: up to 4 cards in a row (cover 190px, title, detail line, stamp). Phone: rows of thumbnail + title/detail, full-width stamp under each.
-7. Hairline. **About teaser:** photo (~220×270 desktop *(m)*), "नीतू के बारे में" (`h2`), short bio, "पूरा परिचय पढ़ें" outline button.
+7. Hairline. **About teaser:** photo (~220×270 desktop *(m)*), "नीतू सिंह के बारे में" (`h2`), short bio, "पूरा परिचय पढ़ें" outline button.
 8. Footer.
 
 ### 7.2 रचनाएँ (catalog) — `02-catalog`
@@ -420,12 +420,12 @@ Data, URL state and search behaviour: see `docs/Data.md` ("Catalog query rules")
    - Genre chips.
    - **Series-part note** (slim panel strip), for parts only: "यह <series link> का भाग 1 है। पूरे धारावाहिक में 2 भाग हैं।"
    - **Releases:** heading (`ui-strong`) adapts: "कहाँ पढ़ें" / "कहाँ पढ़ें या सुनें" / "कहाँ पढ़ें, सुनें या खरीदें". Stamps with detail lines; a parent series' audiobook is inherited.
-   - Hairline, then the **action row:** सहेजें, "WhatsApp पर भेजें" (`https://wa.me/?text=<title>, नीतू की रचना: <url>`), "लिंक कॉपी करें" (changes to "लिंक कॉपी हो गया" for 2.5s, announced via `aria-live`). Outline style, 48px. Phone: save + WhatsApp side by side, copy-link full width below. If "WhatsApp पर भेजें" doesn't fit at 390px, the phone label shortens to "WhatsApp" *(chosen fallback)*.
+   - Hairline, then the **action row:** सहेजें, "WhatsApp पर भेजें" (`https://wa.me/?text=<title>, नीतू सिंह की रचना: <url>`), "लिंक कॉपी करें" (changes to "लिंक कॉपी हो गया" for 2.5s, announced via `aria-live`). Outline style, 48px. Phone: save + WhatsApp side by side, copy-link full width below. If "WhatsApp पर भेजें" doesn't fit at 390px, the phone label shortens to "WhatsApp" *(chosen fallback)*.
 3. **Below:** desktop, a main column (~60%) and a side column (~33%); phone, all stacked.
    - Main: "<kind> के बारे में" (`h2`) + synopsis (Tiro `lead`); "एक अंश" (§6.16).
    - Side (phone: after the excerpt):
      - **"<series> के भाग"** panel: ordered list; current part in 600 with "आप यहाँ हैं" (not a link); other parts are links with a chevron; primary "अगला भाग पढ़ें" (hidden on the last part).
-     - **"इसमें भी शामिल"** panel: small thumbnail, book title link, "साझा संकलन, नीतू और 27 अन्य लेखक".
+     - **"इसमें भी शामिल"** panel: small thumbnail, book title link, "साझा संकलन, नीतू सिंह और 27 अन्य लेखक".
      - **"इसी तरह की और रचनाएँ"** (no panel): 3 works sharing a genre (title link + "कहानी, पारिवारिक"), then "सभी रचनाएँ देखें".
 4. Footer.
 
@@ -436,7 +436,7 @@ Lists every series, collection and anthology, plus single works with a `print` r
 1. Header. Title "पुस्तकें" (`display`) + intro.
 2. Jump links (§6.12) to each group, with counts. A group with no books is hidden.
 3. Groups, each with a `h2` heading + short note on one line (desktop) or two lines (phone), over a heavy rule. Anchor ids *(chosen)*:
-   1. `#neetu-ki-pustaken`: **नीतू की पुस्तकें** ("उनकी अपनी छपी किताबें"): collections and single-story books
+   1. `#neetu-ki-pustaken`: **नीतू सिंह की पुस्तकें** ("उनकी अपनी छपी किताबें"): collections and single-story books
    2. `#sajha-sankalan`: **साझा संकलन** ("दूसरे लेखकों के साथ छपी किताबें")
    3. `#dharavahik`: **धारावाहिक उपन्यास** ("कई भागों में लिखे उपन्यास")
 4. Desktop: grid `repeat(auto-fill, minmax(230px, 1fr))`, gap 44px row / 36px column. Card: 180px cover → title (`h3`, title link) → detail line (`meta`) → one stamp for the main release.
@@ -451,15 +451,15 @@ Lists every series, collection and anthology, plus single works with a `print` r
 2. **Top** (same split as the work page): big cover (anthology byline "संपादक: <name>"), kind line ("साझा संकलन, छपी हुई किताब"), title (`display`), facts list (§6.15).
 3. **Releases:** heading "पूरा धारावाहिक सुनें" / "कहाँ खरीदें", stamps. Series also get the outline button "भाग 1 से पढ़ना शुरू करें ›".
 4. Synopsis (Tiro `lead`).
-5. **Contents:** heading "भाग" / "इस संग्रह की कविताएँ" / "इस संकलन में नीतू की रचना" (`h2`) + one-line note (`meta`) + heavy rule. Ordered list of work rows with a walnut Tiro number column ("भाग 1", "1"; none for anthologies). Max width `--reading-max`.
-6. **Anthology only:** contributors panel "इस संकलन के लेखक": "संपादक: <name>" (600), contributor chips (§6.12), note "इस वेबसाइट पर सिर्फ़ नीतू की रचनाएँ दी गई हैं। बाक़ी रचनाएँ पढ़ने के लिए पुस्तक देखें।"
+5. **Contents:** heading "भाग" / "इस संग्रह की कविताएँ" / "इस संकलन में नीतू सिंह की रचना" (`h2`) + one-line note (`meta`) + heavy rule. Ordered list of work rows with a walnut Tiro number column ("भाग 1", "1"; none for anthologies). Max width `--reading-max`.
+6. **Anthology only:** contributors panel "इस संकलन के लेखक": "संपादक: <name>" (600), contributor chips (§6.12), note "इस वेबसाइट पर सिर्फ़ नीतू सिंह की रचनाएँ दी गई हैं। बाक़ी रचनाएँ पढ़ने के लिए पुस्तक देखें।"
 7. Footer.
 
 ### 7.6 परिचय (about) — `06-about`
 
 1. Header.
 2. **Intro:**
-   - Photo as a print: cream mount (`--label-paper`), the photo rotated −1.5°, book shadow, "नीतू" in Tiro below. Desktop ~320px wide on the left; phone ~250px, centred.
+   - Photo as a print: cream mount (`--label-paper`), the photo rotated −1.5°, book shadow, "नीतू सिंह" in Tiro below. Desktop ~320px wide on the left; phone ~250px, centred.
    - Name (`display-xl`), "हिंदी कहानीकार और कवयित्री" (`lead`, ink-soft), short bio (Tiro `lead`).
    - Buttons: primary "उनकी रचनाएँ पढ़ें" and outline "संपर्क करें" (jumps to `#sampark`). Phone: full-width, stacked.
 3. Ornament divider.

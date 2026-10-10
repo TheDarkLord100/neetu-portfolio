@@ -1,6 +1,6 @@
 # neetu-portfolio — project guide for Claude Code
 
-A Hindi-first portfolio and hub site for Neetu (नीतू), a Hindi writer. It lists all her works (poems, stories, novels, multi-part novels, audiobooks, printed books, anthologies) and links out to where each one is published: Pratilipi, Kuku FM, Amazon and others. Story text is not hosted here.
+A Hindi-first portfolio and hub site for Neetu Singh (नीतू सिंह), a Hindi writer. It lists all her works (poems, stories, novels, multi-part novels, audiobooks, printed books, anthologies) and links out to where each one is published: Pratilipi, Kuku FM, Amazon and others. Story text is not hosted here.
 
 @AGENTS.md
 

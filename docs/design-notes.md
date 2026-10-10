@@ -106,12 +106,12 @@ Order: breadcrumb → cover + header block → (desktop: synopsis/excerpt left, 
 - **Header block:** kind line with a cloth swatch ("कहानी", "उपन्यास, धारावाहिक का भाग 1", "कहानी, छपी किताब के रूप में भी"), title (Tiro, 58px desktop / 40px phone), "पहली बार प्रकाशित: <month year>", genre chips (44px, link to the filtered catalog).
 - **Series part note:** for parts, a raised strip: "यह <series> का भाग 1 है। पूरे धारावाहिक में 2 भाग हैं।"
 - **Releases:** heading adapts ("कहाँ पढ़ें" / "कहाँ पढ़ें या सुनें" / "कहाँ पढ़ें, सुनें या खरीदें"). One stamp button per release, min-width 250px desktop / full width phone, with a plain detail line (desktop beside it, phone below it): "प्रतिलिपि पर ऑनलाइन", "ऑडियो कहानी, वाचक: …", "छपी किताब, <publisher>", "Kindle ई-बुक", "प्रतिलिपि पर, 18 अध्याय", "पूरे धारावाहिक का ऑडियोबुक, वाचक: …". Inherited series audiobooks show on parts.
-- **Action row:** सहेजें (same component as the catalog), "WhatsApp पर भेजें" (link to `https://wa.me/?text=<title>, नीतू की रचना: <url>`), "लिंक कॉपी करें" (clipboard; label changes to "लिंक कॉपी हो गया" for 2.5s, announced via aria-live). Phone: save + WhatsApp side by side, copy-link full width below.
+- **Action row:** सहेजें (same component as the catalog), "WhatsApp पर भेजें" (link to `https://wa.me/?text=<title>, नीतू सिंह की रचना: <url>`), "लिंक कॉपी करें" (clipboard; label changes to "लिंक कॉपी हो गया" for 2.5s, announced via aria-live). Phone: save + WhatsApp side by side, copy-link full width below.
 - **"<kind> के बारे में":** synopsis in Tiro 22px / 20px, line-height 1.9.
 - **"एक अंश":** raised panel with a large turmeric opening quote mark, excerpt in Tiro with preserved line breaks, caption "पूरी रचना पढ़ने के लिए ऊपर दिए गए बटन देखें।" Hidden if there is no excerpt.
 - **Side column (desktop) / after excerpt (phone):**
   - **"<series> के भाग":** ordered list; the current part is bold with "आप यहाँ हैं" (not a link); others link with a chevron; walnut "अगला भाग पढ़ें" button (hidden on the last part).
-  - **"इसमें भी शामिल":** small cloth thumbnail, book title, "साझा संकलन, नीतू और 27 अन्य लेखक" etc. Links to the book page.
+  - **"इसमें भी शामिल":** small cloth thumbnail, book title, "साझा संकलन, नीतू सिंह और 27 अन्य लेखक" etc. Links to the book page.
   - **"इसी तरह की और रचनाएँ":** 3 works sharing a genre (title + "कहानी, पारिवारिक") and "सभी रचनाएँ देखें".
 
 ## Books list page (पुस्तकें)
@@ -119,12 +119,12 @@ Order: breadcrumb → cover + header block → (desktop: synopsis/excerpt left, 
 The पुस्तकें tab. Lists every series, collection and anthology (`kind` in series / collection / anthology), plus single works that have a `print` release.
 
 - Title "पुस्तकें" + one-line intro.
-- **Jump links:** pill links to each group with a cloth swatch and count ("नीतू की पुस्तकें 3"), 46px. A group with no books is not shown.
+- **Jump links:** pill links to each group with a cloth swatch and count ("नीतू सिंह की पुस्तकें 3"), 46px. A group with no books is not shown.
 - **Groups**, each with a Tiro heading + short note on one line, over a 2px ink rule:
-  1. **नीतू की पुस्तकें** ("उनकी अपनी छपी किताबें"): her own collections and single-story books
+  1. **नीतू सिंह की पुस्तकें** ("उनकी अपनी छपी किताबें"): her own collections and single-story books
   2. **साझा संकलन** ("दूसरे लेखकों के साथ छपी किताबें"): anthologies
   3. **धारावाहिक उपन्यास** ("कई भागों में लिखे उपन्यास"): series
-- **Desktop:** cover grid (`repeat(auto-fill, minmax(230px, 1fr))`, gap 44/36px). Each card: 180px cloth cover (anthology covers show "संपादक: …" as byline) → title (Tiro 25px, link) → detail line ("कविता संग्रह, <publisher>, <year>" / "नीतू और 27 अन्य लेखक, <year>" / "2 भाग, पूरा ऑडियोबुक भी") → one stamp button for its main release (खरीदें · Amazon, or सुनें · Kuku FM for a series with an audiobook).
+- **Desktop:** cover grid (`repeat(auto-fill, minmax(230px, 1fr))`, gap 44/36px). Each card: 180px cloth cover (anthology covers show "संपादक: …" as byline) → title (Tiro 25px, link) → detail line ("कविता संग्रह, <publisher>, <year>" / "नीतू सिंह और 27 अन्य लेखक, <year>" / "2 भाग, पूरा ऑडियोबुक भी") → one stamp button for its main release (खरीदें · Amazon, or सुनें · Kuku FM for a series with an audiobook).
 - **Phone:** one book per row: 96px thumbnail + title / kind / detail beside it, then a full-width stamp (54px) under each, like the home page's books strip. Two covers per row was rejected: the stamp doesn't fit.
 - The cover and title both link to the book page; the cover link is hidden from screen readers to avoid duplicate links.
 - Footer note: "ऑनलाइन कहानियाँ और कविताएँ रचनाएँ पेज पर हैं।"
@@ -134,18 +134,18 @@ The पुस्तकें tab. Lists every series, collection and anthology (
 - **Header:** large cover (anthology byline on the cover: "संपादक: <name>"), kind line, title (60px / 42px), then a **facts list** (`<dl>`, label column in ink-soft):
   - series: भाग, पहला भाग, दूसरा भाग, विषय
   - collection: प्रकाशक, प्रकाशन वर्ष, कविताएँ (count), ISBN
-  - anthology: संपादक, लेखक ("नीतू और 27 अन्य"), प्रकाशक, प्रकाशन वर्ष
+  - anthology: संपादक, लेखक ("नीतू सिंह और 27 अन्य"), प्रकाशक, प्रकाशन वर्ष
 - **Whole-book releases:** same stamp buttons ("पूरा धारावाहिक सुनें" / "कहाँ खरीदें"). Series also get a secondary button "भाग 1 से पढ़ना शुरू करें".
 - **Synopsis** in Tiro, under the releases.
-- **Contents:** heading "भाग" / "इस संग्रह की कविताएँ" / "इस संकलन में नीतू की रचना", a one-line note ("बाक़ी कविताएँ सिर्फ़ किताब में हैं।"), then an ordered list under a 2px ink rule. Each item: number in walnut Tiro ("भाग 1", "1", or none for anthologies), title link, detail line, one-line description, action pills.
-- **Anthology contributors:** raised panel "इस संकलन के लेखक" with "संपादक: <name>", then chips: **नीतू** (walnut fill), up to **3 featured co-authors** (paper chips), then a **dashed "और 24 अन्य लेखक"** chip. Note: "इस वेबसाइट पर सिर्फ़ नीतू की रचनाएँ दी गई हैं। बाक़ी रचनाएँ पढ़ने के लिए पुस्तक देखें।" Hidden for series and collections.
+- **Contents:** heading "भाग" / "इस संग्रह की कविताएँ" / "इस संकलन में नीतू सिंह की रचना", a one-line note ("बाक़ी कविताएँ सिर्फ़ किताब में हैं।"), then an ordered list under a 2px ink rule. Each item: number in walnut Tiro ("भाग 1", "1", or none for anthologies), title link, detail line, one-line description, action pills.
+- **Anthology contributors:** raised panel "इस संकलन के लेखक" with "संपादक: <name>", then chips: **नीतू सिंह** (walnut fill), up to **3 featured co-authors** (paper chips), then a **dashed "और 24 अन्य लेखक"** chip. Note: "इस वेबसाइट पर सिर्फ़ नीतू सिंह की रचनाएँ दी गई हैं। बाक़ी रचनाएँ पढ़ने के लिए पुस्तक देखें।" Hidden for series and collections.
 
 ## About page (परिचय)
 
 - **Intro:** her photo as a slightly rotated (−1.5°) print on a cream mount with her name handwritten-style below (Tiro), name in 72px / 52px Tiro, "हिंदी कहानीकार और कवयित्री", short bio in Tiro, buttons "उनकी रचनाएँ पढ़ें" (walnut) and "संपर्क करें" (outline, jumps to contact).
 - Ornament divider.
 - **"लेखन का सफ़र":** 2–3 paragraphs (from `author_profile.bio_hi`).
-- **Quote:** large turmeric quote mark, her words in Tiro 30px / 24px, caption "नीतू". Hidden if empty.
+- **Quote:** large turmeric quote mark, her words in Tiro 30px / 24px, caption "नीतू सिंह". Hidden if empty.
 - **"प्रमुख सम्मान":** 3–4 featured awards (name bold, "संस्था, वर्ष" below). Then a native `<details>` disclosure **"और सम्मान देखें (n)"** (54px, walnut text, chevron rotates when open) listing the rest grouped by year (year subheading, one line each: "सम्मान, संस्था"). Hidden if there are no non-featured awards.
 - **"उन्हें कहाँ पढ़ें और सुनें":** 64px rows: platform logo, name, one-line description, external-link arrow.
 - **"संपर्क":** raised panel: purpose line, walnut email button, social links.

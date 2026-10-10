@@ -116,7 +116,7 @@ About page: featured awards in full, then a "और सम्मान देख
 | Chaptered novel on Pratilipi | `novel` + `online` release with `chapter_count` |
 | Two-part novel + audiobook | `series` → two `novel` children. Each part has an `online` release. The Kuku FM `audiobook` release attaches to the series (or to each part, if released separately) |
 | Poem / story compilation book | `collection` → its poems/stories, plus a `print` release |
-| Collaborative book | `anthology` → her pieces in it, plus a `print` release, with `editor`, `featured_contributors` (2–3 names) and `contributors_total` filled in. Shown as "नीतू, A, B, C और 24 अन्य लेखक" |
+| Collaborative book | `anthology` → her pieces in it, plus a `print` release, with `editor`, `featured_contributors` (2–3 names) and `contributors_total` filled in. Shown as "नीतू सिंह, A, B, C और 24 अन्य लेखक" |
 | Chapters | not modelled; `chapter_count` on the release, linking to the Pratilipi series page |
 
 ## Rules (enforced in admin form validation, not DB constraints)

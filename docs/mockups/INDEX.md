@@ -52,7 +52,7 @@ Content is placeholder: anything in [square brackets] is to be filled with real 
 
 | File | Shows |
 |---|---|
-| desktop-1-books-list.jpg | Jump links with counts, three groups (नीतू की पुस्तकें, साझा संकलन, धारावाहिक उपन्यास), cover grid with buy/listen stamps |
+| desktop-1-books-list.jpg | Jump links with counts, three groups (नीतू सिंह की पुस्तकें, साझा संकलन, धारावाहिक उपन्यास), cover grid with buy/listen stamps |
 | phone-1-books-list.jpg | Phone: thumbnail + title rows with a full-width stamp under each |
 
 ## 05-book — पुस्तक / धारावाहिक
@@ -61,7 +61,7 @@ Content is placeholder: anything in [square brackets] is to be filled with real 
 |---|---|
 | desktop-1-series.jpg / phone-1-series.jpg | Series: facts, full audiobook, "भाग 1 से पढ़ना शुरू करें", parts list |
 | desktop-2-collection.jpg / phone-2-collection.jpg | Poetry collection: publisher facts, buy, poems on the site |
-| desktop-3-anthology.jpg / phone-3-anthology.jpg | Anthology: editor, नीतू + 3 featured co-authors + "और 24 अन्य लेखक", her piece |
+| desktop-3-anthology.jpg / phone-3-anthology.jpg | Anthology: editor, नीतू सिंह + 3 featured co-authors + "और 24 अन्य लेखक", her piece |
 
 ## 06-about — परिचय
 

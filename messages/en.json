@@ -1,10 +1,10 @@
 {
   "meta": {
-    "title": "Neetu",
-    "description": "Neetu — Hindi writer. Poems, stories and novels."
+    "title": "Neetu Singh",
+    "description": "Neetu Singh — Hindi writer. Poems, stories and novels."
   },
   "site": {
-    "name": "Neetu",
+    "name": "Neetu Singh",
     "tagline": "Stories, poems and novels"
   },
   "nav": {
@@ -26,11 +26,11 @@
   "footer": {
     "navLabel": "Footer menu",
     "contact": "Contact",
-    "platformProfile": "Neetu on {platform}",
-    "copyright": "© {year} Neetu. All rights to the works reserved by the author."
+    "platformProfile": "Neetu Singh on {platform}",
+    "copyright": "© {year} Neetu Singh. All rights to the works reserved by the author."
   },
   "home": {
-    "heading": "Neetu",
+    "heading": "Neetu Singh",
     "intro": "Hindi writer. Her poems, stories, novels and books in one place — along with everywhere you can read or listen to them."
   }
 }
