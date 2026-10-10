@@ -25,7 +25,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [x] About page mockup (featured awards + "और सम्मान देखें" by year)
 - [x] Books list page (पुस्तकें) mockup
 - [x] **(you)** Add `public/textures/` (paper images) and `docs/mockups/` (page images) to the repo
-- [ ] Generate `DESIGN.md` (repo root) from `docs/design-notes.md` + `docs/mockups/`: tokens (colour, type scale, spacing, radius, shadows), components with states, page layouts, behaviour rules. Where the images and design-notes disagree, design-notes wins; list any disagreement for me instead of choosing. I review before it's committed.
+- [x] Generate `DESIGN.md` (repo root) from `docs/design-notes.md` + `docs/mockups/`: tokens (colour, type scale, spacing, radius, shadows), components with states, page layouts, behaviour rules. Where the images and design-notes disagree, design-notes wins; list any disagreement for me instead of choosing. I review before it's committed.
 
 ## Phase 2: Data
 
