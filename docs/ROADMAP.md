@@ -80,7 +80,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [ ] **(you)** Buy the domain
 - [ ] Deploy to Vercel; production Supabase env; custom domain
 - [ ] **(you)** Replace placeholders with real works
-- [ ] **(you)** Platform logos: official files from each platform's brand/press page (lettered placeholders until then), uploaded via admin
+- [ ] **(you)** Platform logos: official files from each platform's brand/press page as PNG or WebP, at least 256px square (no SVG; the storage bucket refuses it). Lettered placeholders until then; uploaded via admin
 - [ ] A short Hindi guide for her on using the admin
 
 ## Later
