@@ -1,5 +1,6 @@
 import { createServerClient as createSsrClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import type { Database } from "@/lib/database.types";
 import { env } from "@/lib/env";
 
 // For admin pages and server actions only. Reads the login cookies, which
@@ -8,7 +9,7 @@ import { env } from "@/lib/env";
 export async function createServerClient() {
   const cookieStore = await cookies();
 
-  return createSsrClient(env.supabaseUrl, env.supabasePublishableKey, {
+  return createSsrClient<Database>(env.supabaseUrl, env.supabasePublishableKey, {
     cookies: {
       getAll() {
         return cookieStore.getAll();
