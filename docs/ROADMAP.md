@@ -31,6 +31,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 
 - [ ] Migration: enums and tables from `docs/Data.md` **(review SQL yourself)**
 - [ ] Migration: RLS policies, public reads published only **(review yourself)**
+- [ ] Storage buckets for covers and author photo: public read, admin-only upload **(review yourself)**
 - [ ] Seed placeholder data (the set in `docs/Data.md`, at least 30 leaf works so pagination can be tested), plus platforms and genres
 - [ ] Generate TypeScript types from Supabase; add a small data-access layer (`lib/data/`)
 
@@ -79,6 +80,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [ ] **(you)** Buy the domain
 - [ ] Deploy to Vercel; production Supabase env; custom domain
 - [ ] **(you)** Replace placeholders with real works
+- [ ] **(you)** Platform logos: official files from each platform's brand/press page (lettered placeholders until then), uploaded via admin
 - [ ] A short Hindi guide for her on using the admin
 
 ## Later

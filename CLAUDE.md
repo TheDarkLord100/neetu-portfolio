@@ -8,8 +8,9 @@ A Hindi-first portfolio and hub site for Neetu (नीतू), a Hindi writer. I
 
 - `docs/Data.md`: the data model. Source of truth for tables, enums and rules.
 - `docs/ROADMAP.md`: the task list. Work on one item at a time.
-- `DESIGN.md`: the visual system (added after the mockups). Never invent colours, fonts or spacing outside it. Until it exists, `docs/design-notes.md` holds the approved decisions; follow it.
-- `docs/mockups/`: approved page images (phone 390px and desktop 1440px, every variant), indexed in `docs/mockups/INDEX.md`. When building a page, open its images and match them; compare your Playwright screenshots against them. If an image and design-notes disagree, design-notes wins.
+- `DESIGN.md`: the visual system and the source of truth for design. Never invent colours, fonts, sizes or spacing outside it; if something is missing, ask and add it there first. `docs/design-notes.md` is the earlier working record it was built from; don't follow it where the two differ.
+- `docs/v2_suggestions.md`: ideas deliberately left out of the first version. Don't build them unless I ask.
+- `docs/mockups/`: approved page images (phone 390px and desktop 1440px, every variant), indexed in `docs/mockups/INDEX.md`. When building a page, open its images and match them; compare your Playwright screenshots against them. If an image and DESIGN.md disagree, DESIGN.md wins.
 
 ## Stack
 
@@ -51,7 +52,7 @@ I make decisions and review results; I don't read most of the code. So:
 - URLs and slugs are Latin script (transliterated, e.g. `/rachna/barish-ki-raat`), never Devanagari.
 - Release buttons are labelled by action, not platform: पढ़ें (read), सुनें (listen), खरीदें (buy), with the platform logo beside the label.
 
-## UI rules (until DESIGN.md exists)
+## UI rules (always apply, alongside DESIGN.md)
 
 - Mobile first. Design for a 390px-wide phone, then scale up.
 - Readers include older, non-technical people: body text at least 17px, line-height 1.7 or more for Devanagari, tap targets at least 44px, high contrast, no hover-only interactions, no hidden gestures.
@@ -59,13 +60,13 @@ I make decisions and review results; I don't read most of the code. So:
 - Fonts via `next/font` with the Devanagari subset.
 - Keep pages light: optimised images through `next/image`, no heavy animation libraries.
 - Nothing moves on its own: no auto-rotating carousels or auto-advancing content. The featured carousel changes only when the reader taps.
-- If a design skill's advice conflicts with DESIGN.md / design-notes.md or these rules, those files win.
+- If a design skill's advice conflicts with DESIGN.md or these rules, DESIGN.md and this file win.
 
 ## Client-side features
 
 - **Catalog state lives in the URL** (search params: `q`, `kind`, `format`, `genre`, `platform`, `saved`, `sort`, `per`, `page`). Back button and shared links must restore the exact view. Any change other than `page` resets `page` to 1. On page change, scroll to the top of the results.
 - **Favourites** use `localStorage` key `neetu-saved-v1` (JSON array of work slugs). Only read or write it in client components, after mount (in an effect), never during render, so there is no hydration mismatch. Wrap every access in try/catch and treat failure as an empty list. Listen for the `storage` event so other tabs stay in sync. Drop slugs that no longer resolve.
-- **Voice search** is a progressive enhancement: use `window.SpeechRecognition || window.webkitSpeechRecognition` with `lang = 'hi-IN'` and interim results. Feature-detect after mount. If it's unsupported, permission is denied or recognition fails, show the Hindi fallback messages from design-notes and keep typing working. Never block search on it. Stop recognition on unmount.
+- **Voice search** is a progressive enhancement: use `window.SpeechRecognition || window.webkitSpeechRecognition` with `lang = 'hi-IN'` and interim results. Feature-detect after mount. If it's unsupported, permission is denied or recognition fails, show the Hindi fallback messages from DESIGN.md (§8) and keep typing working. Never block search on it. Stop recognition on unmount.
 - **Search matching** ignores the nukta (़) and case on both the query and the data.
 - Don't add libraries for any of these; the browser APIs are enough.
 
