@@ -48,6 +48,7 @@ Separate **the creative piece** (`works`) from **where it was released** (`relea
 | `editor` | text | anthologies only |
 | `featured_contributors` | text[] | anthologies only: 2–3 prominent co-authors, shown by name |
 | `contributors_total` | int | anthologies only: total authors incl. her; the page shows "और N अन्य लेखक" for the rest |
+| `search_text` | text, generated | nukta-free lowercase title + synopsis, for catalog search; not edited by hand |
 | `created_at` / `updated_at` | timestamptz | |
 
 ### `work_members`
@@ -78,7 +79,7 @@ This is many-to-many: a poem can stand alone on Pratilipi *and* appear in a prin
 
 ### `platforms`
 
-`id`, `slug`, `name_hi`, `name_en`, `logo_path`
+`id`, `slug`, `name_hi`, `name_en`, `logo_path`, `profile_url` (her profile on that platform: About page and footer), `description_hi` / `description_en` (one line for the About page, e.g. "ऑडियोबुक सुनें"), `sort_order`
 
 ### `genres` / `work_genres`
 
@@ -89,7 +90,7 @@ Genres are a table rather than a text array so filter labels have Hindi and Engl
 
 ### `author_profile` (single row)
 
-`bio_hi`, `bio_en`, `quote_hi`, `quote_en`, `photo_path`, `email`, social links. Feeds the About page and the footer.
+`tagline_hi` / `tagline_en` ("हिंदी कहानीकार और कवयित्री"), `intro_hi` / `intro_en` (short bio: About intro and home teaser), `bio_hi` / `bio_en` (the longer "लेखन का सफ़र"), `quote_hi`, `quote_en`, `photo_path`, `email`, `social_links` (jsonb array of `{name, url}`). Feeds the About page, the home teaser and the footer. Exactly one row (enforced in the database).
 
 ### `awards`
 
@@ -148,7 +149,7 @@ About page: featured awards in full, then a "और सम्मान देख
   - platform (from effective releases)
   - saved-only (client-side, see below)
 - **Filter logic:** options within a group are OR; groups combine with AND. Counts beside options are totals over all published leaf works (not recalculated per selection).
-- **Search:** matches `title_hi` and `synopsis_hi` (first line), case-insensitive, ignoring the nukta (़) so "खामोशी" finds "ख़ामोशी". Postgres: use an `unaccent`-style normalised column or a generated column with nukta stripped, plus `ilike`. For 100+ works this is fine without full-text search.
+- **Search:** matches `title_hi` and `synopsis_hi`, case-insensitive, ignoring the nukta (़) so "खामोशी" finds "ख़ामोशी". Implemented as the generated column `works.search_text` (built by `normalize_search_text()`, which strips the nukta in both typed forms and lowercases); the query normalises the search term with the same function and uses `ilike`. For 100+ works this is fine without full-text search.
 - **Sort:** newest first (`published_on desc`, default), oldest first, or by title (Hindi collation).
 - **Pagination:** page size 10 / 25 / 50 / 100 (default 10). Return the total count with each page.
 - **URL state:** `?q=&kind=&format=&genre=&platform=&saved=1&sort=&per=&page=`. Every param is optional, and invalid values fall back to defaults.
