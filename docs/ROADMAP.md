@@ -1,14 +1,15 @@
-# Roadmap
+# Roadmap — neetu-portfolio
 
 One item per Claude Code session. Plan → approve → build → review → tick.
 Items marked **(you)** are done by you, not Claude.
 
 ## Phase 0: Setup
 
-- [ ] **(you)** Install Node.js LTS, Git for Windows and Claude Code
-- [ ] **(you)** Create the Next.js app, init git, and add `CLAUDE.md`, `docs/Data.md` and this roadmap
-- [ ] **(you)** Create a Supabase project; put the URL and anon key in `.env.local`
-- [ ] **(you)** Add skills to `.claude/skills/`: web-design-guidelines and one Taste sub-skill
+- [x] **(you)** Install Node.js LTS, Git for Windows and Claude Code
+- [x] **(you)** Create the Next.js app (`neetu-portfolio`), push to GitHub, and add `CLAUDE.md`, `docs/Data.md` and this roadmap
+- [x] **(you)** Create a Supabase project (Mumbai region), disable public sign-ups, and put the URL and publishable key in `.env.local`
+- [x] **(you)** Link the Supabase CLI to the project (`npx supabase init`, `login`, `link`)
+- [x] **(you)** Add skills to `.claude/skills/`: web-design-guidelines and one Taste sub-skill
 - [ ] Clean the starter app (remove boilerplate), set `lang="hi"`, and add an empty layout with Devanagari fonts
 - [ ] Set up i18n structure: Hindi at `/`, `messages/hi.json` and `messages/en.json`, no English routes yet
 - [ ] Add Supabase client helpers (server and browser) and env validation

@@ -1,6 +1,6 @@
-# Author Hub — project guide for Claude Code
+# neetu-portfolio — project guide for Claude Code
 
-A Hindi-first portfolio and hub site for a Hindi writer, [AUTHOR NAME]. It lists all her works (poems, stories, novels, multi-part novels, audiobooks, printed books, anthologies) and links out to where each one is published: Pratilipi, Kuku FM, Amazon and others. Story text is not hosted here.
+A Hindi-first portfolio and hub site for Neetu (नीतू), a Hindi writer. It lists all her works (poems, stories, novels, multi-part novels, audiobooks, printed books, anthologies) and links out to where each one is published: Pratilipi, Kuku FM, Amazon and others. Story text is not hosted here.
 
 @AGENTS.md
 
@@ -57,12 +57,14 @@ I make decisions and review results; I don't read most of the code. So:
 - Navigation has at most 4 top-level sections, and search stays visible.
 - Fonts via `next/font` with the Devanagari subset.
 - Keep pages light: optimised images through `next/image`, no heavy animation libraries.
+- If a design skill's advice conflicts with DESIGN.md or these rules, DESIGN.md and this file win.
 
 ## Data and security rules
 
 - Public pages read only `published` works. RLS enforces this; don't rely on query filters alone.
 - Every admin page and server action verifies the Supabase session on the server.
-- The Supabase service-role key is server-only: never in client components, never committed. Secrets live in `.env.local`, which is git-ignored.
+- Supabase keys: use the **publishable key** (`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`) in app code, browser and server alike, and let RLS do the protecting. Do not use the legacy `anon` / `service_role` keys. Don't add the **secret key** (it bypasses RLS) unless I approve a specific server-only need; if added, it is never in client components and never committed. Secrets live in `.env.local`, which is git-ignored.
+- Public sign-ups are disabled in Supabase. Admin write access must also check an explicit admin allowlist, not just "is logged in".
 - Schema changes are SQL migration files in `supabase/migrations/`. I review these myself.
 - After an admin save, revalidate the affected public paths.
 

@@ -1,4 +1,4 @@
-# Data Model — Author Hub Site
+# Data Model — neetu-portfolio
 
 Status: draft for review · 10 Oct 2026
 
@@ -114,7 +114,8 @@ Genres are a table rather than a text array so filter labels have Hindi and Engl
 ## Access (RLS)
 
 - Public: `select` on all tables, with `works` limited to `status = 'published'`. Releases and members of unpublished works are hidden too.
-- Authenticated admin: full read/write.
+- Admin: full read/write, but only for users listed in an `admins` allowlist table (`user_id` → auth.users), checked in RLS policies. Being logged in alone is not enough.
+- Public sign-ups are disabled in Supabase Auth; admin accounts are created by hand in the dashboard.
 
 ## Site usage notes
 
