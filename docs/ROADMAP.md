@@ -11,7 +11,7 @@ Items marked **(you)** are done by you, not Claude.
 - [x] **(you)** Link the Supabase CLI to the project (`npx supabase init`, `login`, `link`)
 - [x] **(you)** Add skills to `.claude/skills/`: web-design-guidelines and one Taste sub-skill
 - [x] Clean the starter app (remove boilerplate), set `lang="hi"`, and add an empty layout with Devanagari fonts
-- [ ] Set up i18n structure: Hindi at `/`, `messages/hi.json` and `messages/en.json`, no English routes yet
+- [x] Set up i18n structure: Hindi at `/`, `messages/hi.json` and `messages/en.json`, no English routes yet
 - [ ] Add Supabase client helpers (server and browser) and env validation
 
 ## Phase 1: Design
