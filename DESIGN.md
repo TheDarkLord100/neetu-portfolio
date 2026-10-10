@@ -206,7 +206,7 @@ States are listed for each component. "Phone" means below 1024px.
 - **Search** (all pages except the catalog, which has its own):
   - Desktop: field (~260px, 50px tall, `--paper-raised`, `--line-strong` border, placeholder "कहानी या कविता का नाम") joined to a walnut button "खोजें" with a magnifier icon. Label "रचना खोजें" is visually hidden.
   - Phone: visible label "रचना खोजें" (`meta`, 600) above a full-width field + "खोजें" button, 52px tall.
-  - Submits to `/rachnayen?q=…` (catalog).
+  - Submits to `/works?q=…` (catalog).
 - A full-width hairline under the header.
 
 ### 6.2 Footer (same on every page)
@@ -371,7 +371,7 @@ Panel, centred: open-book line icon (~64px, ink at 70%), heading "कोई र�
 
 ## 7. Pages
 
-URLs follow CLAUDE.md (Latin slugs). The route names used here (`/rachnayen`, `/pustaken`) are proposals *(chosen)*, to be confirmed when the pages are built in Phase 3. Sections listed in order; "phone" means below 1024px.
+Addresses: `/` home, `/works` catalog, `/work/<slug>` work, `/books` books list, `/book/<slug>` book, `/about` about (English paths, Hinglish slugs; see CLAUDE.md). Sections listed in order; "phone" means below 1024px.
 
 ### 7.1 मुखपृष्ठ (home) — `01-home`
 
@@ -385,7 +385,7 @@ URLs follow CLAUDE.md (Latin slugs). The route names used here (`/rachnayen`, `/
      - कहानियाँ → `?kind=story`
      - कविताएँ → `?kind=poem`
      - उपन्यास → `?kind=novel`
-     - धारावाहिक उपन्यास → books page, series group (`/pustaken#dharavahik`)
+     - धारावाहिक उपन्यास → books page, series group (`/books#dharavahik`)
      - सुनने के लिए (ऑडियोबुक) → `?format=audiobook`
 6. Hairline. **पुस्तकें** ("छपी हुई किताबें, जिन्हें आप घर मँगा सकते हैं") + "सभी पुस्तकें देखें": book strip. Desktop: up to 4 cards in a row (cover 190px, title, detail line, stamp). Phone: rows of thumbnail + title/detail, full-width stamp under each.
 7. Hairline. **About teaser:** photo (~220×270 desktop *(m)*), "नीतू के बारे में" (`h2`), short bio, "पूरा परिचय पढ़ें" outline button.

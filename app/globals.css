@@ -1,17 +1,168 @@
 @import "tailwindcss";
 
-/* Font families come from lib/fonts.ts (next/font CSS variables). */
-@theme inline {
-  --font-sans: var(--font-body-face), sans-serif;
-  --font-heading: var(--font-heading-face), serif;
+/*
+ * Design tokens from DESIGN.md. Never add colours, sizes or fonts outside it.
+ * Sizes are rem (16px = 1rem) so they follow the reader's browser text size.
+ */
+
+:root {
+  /* §2 Colour */
+  --paper: #eedcb6;
+  --paper-raised: #f4e6c8;
+  --label-paper: #f4ead2;
+  --ink: #2a1e12;
+  --ink-soft: #5a4430;
+  --walnut: #6b4116;
+  --walnut-dark: #55320f;
+  --on-walnut: #fbf5e8;
+  --turmeric: #b57a1e;
+  --line: #c9b48a;
+  --line-strong: #7a6446;
+  --footer-text-soft: #d9c9a6;
+
+  --cloth-story: #8a5a1e;
+  --cloth-poem: #5a6233;
+  --cloth-novel: #6e2f1a;
+  --cloth-series: #3e3122;
+  --cloth-collection: #6b5b22;
+  --cloth-anthology: #5b3434;
+
+  /* §3 Type scale: phone values; desktop values below */
+  --fs-display-xl: 3.25rem; /* 52 */
+  --fs-display: 2.625rem; /* 42 */
+  --fs-h2: 2rem; /* 32 */
+  --fs-h3: 1.5625rem; /* 25 */
+  --fs-quote: 1.5rem; /* 24 */
+  --fs-lead: 1.25rem; /* 20 */
+  --fs-body: 1.125rem; /* 18 */
+  --fs-ui: 1.0625rem; /* 17 */
+  --fs-meta: 0.9375rem; /* 15 */
+  --fs-brand: 2.125rem; /* 34 (m) header name */
+
+  /* §4 Layout */
+  --gutter: 1rem; /* 16 */
+  --content-max: 75rem; /* 1200 */
+  --tablet-max: 45rem; /* 720 */
+  --reading-max: 51.25rem; /* 820 (m) */
+  --radius-control: 6px;
+  --radius-panel: 8px;
+  --shadow-book: 0 10px 24px rgb(42 30 18 / 0.28), 0 2px 4px rgb(42 30 18 / 0.2);
+
+  /* §5 Paper texture: edge strip width */
+  --paper-edge: 28px;
 }
 
-/* Readable Devanagari defaults. No colours or theme until DESIGN.md exists. */
+@media (min-width: 64rem) {
+  :root {
+    --fs-display-xl: 4.5rem; /* 72 */
+    --fs-display: 3.75rem; /* 60 */
+    --fs-h2: 2.375rem; /* 38 */
+    --fs-h3: 1.75rem; /* 28 */
+    --fs-quote: 1.875rem; /* 30 */
+    --fs-lead: 1.375rem; /* 22 */
+    --fs-body: 1.1875rem; /* 19 */
+    --fs-meta: 1rem; /* 16 */
+    --fs-brand: 2.5rem; /* 40 (m) */
+    --gutter: 3rem; /* 48 */
+    --paper-edge: 140px;
+  }
+}
+
+@theme inline {
+  /* Fonts come from lib/fonts.ts (next/font CSS variables). */
+  --font-sans: var(--font-body-face), sans-serif;
+  --font-heading: var(--font-heading-face), serif;
+
+  /* One layout switch at 1024px (DESIGN.md §4.2); tablet cap from 600px. */
+  --breakpoint-tab: 37.5rem;
+  --breakpoint-desk: 64rem;
+
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-label-paper: var(--label-paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-walnut: var(--walnut);
+  --color-walnut-dark: var(--walnut-dark);
+  --color-on-walnut: var(--on-walnut);
+  --color-turmeric: var(--turmeric);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-footer-text-soft: var(--footer-text-soft);
+  --color-cloth-story: var(--cloth-story);
+  --color-cloth-poem: var(--cloth-poem);
+  --color-cloth-novel: var(--cloth-novel);
+  --color-cloth-series: var(--cloth-series);
+  --color-cloth-collection: var(--cloth-collection);
+  --color-cloth-anthology: var(--cloth-anthology);
+
+  --text-display-xl: var(--fs-display-xl);
+  --text-display-xl--line-height: 1.2;
+  --text-display: var(--fs-display);
+  --text-display--line-height: 1.2;
+  --text-h2: var(--fs-h2);
+  --text-h2--line-height: 1.3;
+  --text-h3: var(--fs-h3);
+  --text-h3--line-height: 1.35;
+  --text-quote: var(--fs-quote);
+  --text-quote--line-height: 1.6;
+  --text-lead: var(--fs-lead);
+  --text-lead--line-height: 1.9;
+  --text-body: var(--fs-body);
+  --text-body--line-height: 1.8;
+  --text-ui: var(--fs-ui);
+  --text-ui--line-height: 1.4;
+  --text-meta: var(--fs-meta);
+  --text-meta--line-height: 1.5;
+  --text-brand: var(--fs-brand);
+  --text-brand--line-height: 1.2;
+
+  --radius-control: var(--radius-control);
+  --radius-panel: var(--radius-panel);
+  --shadow-book: var(--shadow-book);
+}
+
+/* Page width: phone gutter; 720px centred column on tablet; 1200px on desktop. */
+@utility page-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  max-width: calc(var(--tablet-max) + 2 * var(--gutter));
+
+  @media (min-width: 64rem) {
+    max-width: calc(var(--content-max) + 2 * var(--gutter));
+  }
+}
+
+/* Paper background (DESIGN.md §5): four stained edges over a tiled centre. */
+@utility paper {
+  background-color: var(--paper);
+  background-image:
+    url("/textures/edge-left.png"), url("/textures/edge-right.png"), url("/textures/edge-top.png"),
+    url("/textures/edge-bottom.png"), url("/textures/paper-centre.jpg");
+  background-repeat: repeat-y, repeat-y, repeat-x, repeat-x, repeat;
+  background-position: left top, right top, left top, left bottom, center top;
+  background-size:
+    var(--paper-edge) auto,
+    var(--paper-edge) auto,
+    auto var(--paper-edge),
+    auto var(--paper-edge),
+    512px 512px;
+}
+
 @layer base {
+  html {
+    background-color: var(--ink); /* matches the footer when over-scrolling */
+  }
+
   body {
     font-family: var(--font-sans);
-    font-size: 1.0625rem; /* 17px at the default root size; scales with browser text size */
-    line-height: 1.75;
+    font-size: var(--fs-body);
+    line-height: 1.8;
+    color: var(--ink);
+    background-color: var(--paper);
+    font-synthesis: none;
+    -webkit-text-size-adjust: 100%;
   }
 
   h1,
@@ -21,7 +172,23 @@
   h5,
   h6 {
     font-family: var(--font-heading);
-    font-weight: 400; /* Tiro has no bold; avoid synthetic bolding */
-    line-height: 1.4;
+    font-weight: 400; /* Tiro has no bold */
+    line-height: 1.3;
+  }
+
+  /* §4.7 Focus ring on every interactive element */
+  :focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0s !important;
+      animation-duration: 0s !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

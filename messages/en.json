@@ -3,6 +3,32 @@
     "title": "Neetu",
     "description": "Neetu — Hindi writer. Poems, stories and novels."
   },
+  "site": {
+    "name": "Neetu",
+    "tagline": "Stories, poems and novels"
+  },
+  "nav": {
+    "label": "Main menu",
+    "home": "Home",
+    "works": "Works",
+    "books": "Books",
+    "about": "About"
+  },
+  "search": {
+    "label": "Search works",
+    "placeholder": "Title of a story or poem",
+    "submit": "Search"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "newWindow": "(opens in a new window)"
+  },
+  "footer": {
+    "navLabel": "Footer menu",
+    "contact": "Contact",
+    "platformProfile": "Neetu on {platform}",
+    "copyright": "© {year} Neetu. All rights to the works reserved by the author."
+  },
   "home": {
     "heading": "Neetu",
     "intro": "Hindi writer. Her poems, stories, novels and books in one place — along with everywhere you can read or listen to them."

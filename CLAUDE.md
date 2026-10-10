@@ -49,7 +49,7 @@ I make decisions and review results; I don't read most of the code. So:
   - No hard-coded UI strings in components. Put them in the messages files (`messages/hi.json`, with `messages/en.json` alongside).
   - Use `_hi` / `_en` columns for translatable data. Show `_hi` until English is enabled.
 - Page `<html lang="hi">`.
-- URLs and slugs are Latin script (transliterated, e.g. `/rachna/barish-ki-raat`), never Devanagari.
+- Page addresses are English (`/works`, `/work/<slug>`, `/books`, `/book/<slug>`, `/about`); slugs are transliterated Hindi in Latin script (e.g. `/work/barish-ki-raat`), never Devanagari. Build links with `lib/routes.ts`.
 - Release buttons are labelled by action, not platform: पढ़ें (read), सुनें (listen), खरीदें (buy), with the platform logo beside the label.
 
 ## UI rules (always apply, alongside DESIGN.md)

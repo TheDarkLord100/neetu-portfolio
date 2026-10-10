@@ -11,7 +11,7 @@ export const headingFont = Tiro_Devanagari_Hindi({
 });
 
 export const bodyFont = Mukta({
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
   subsets: ["devanagari", "latin"],
   display: "swap",
   variable: "--font-body-face",
