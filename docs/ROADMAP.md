@@ -29,7 +29,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 
 ## Phase 2: Data
 
-- [ ] Migration: enums and tables from `docs/Data.md` **(review SQL yourself)**
+- [x] Migration: enums and tables from `docs/Data.md` **(review SQL yourself)**
 - [ ] Migration: RLS policies, public reads published only **(review yourself)**
 - [ ] Storage buckets for covers and author photo: public read, admin-only upload **(review yourself)**
 - [ ] Seed placeholder data (the set in `docs/Data.md`, at least 30 leaf works so pagination can be tested), plus platforms and genres
