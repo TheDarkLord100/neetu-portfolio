@@ -37,7 +37,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 
 ## Phase 3: Public site
 
-- [ ] Site shell: paper background (texture layers), header, mobile 4-tab navigation, footer, visible search
+- [x] Site shell: paper background (texture layers), header, mobile 4-tab navigation, footer, visible search
 - [ ] Shared components: release "stamp" button, cloth-cover fallback, work row (contents style), save (bookmark) button
 - [ ] Home page: featured carousel (tap-only, never auto-rotates), latest works, browse-by-kind panel, books strip, about teaser
 - [ ] Catalog page (रचनाएँ): list + kind chips + filter groups (format, genre, platform), active-filter chips, count, sort, empty state
