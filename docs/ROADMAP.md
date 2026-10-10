@@ -16,29 +16,41 @@ Items marked **(you)** are done by you, not Claude.
 
 ## Phase 1: Design
 
-- [ ] Mockups for home, catalog, work page, series/collection page and about (done in claude.ai, not Claude Code)
-- [ ] Write `DESIGN.md` from the approved mockups
+Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/design-notes.md` as each page is approved.
+
+- [x] Home page mockup (incl. tap-only featured carousel and saved-works section)
+- [x] Catalog page mockup (search with voice, filters, pagination, favourites, empty state)
+- [x] Work page mockup (one release, four releases, series part; share; "appears in"; more like this)
+- [x] Series / collection / anthology page mockup (anthology: 3 named co-authors + "और N अन्य")
+- [x] About page mockup (featured awards + "और सम्मान देखें" by year)
+- [x] Books list page (पुस्तकें) mockup
+- [x] **(you)** Add `public/textures/` (paper images) and `docs/mockups/` (page images) to the repo
+- [ ] Generate `DESIGN.md` (repo root) from `docs/design-notes.md` + `docs/mockups/`: tokens (colour, type scale, spacing, radius, shadows), components with states, page layouts, behaviour rules. Where the images and design-notes disagree, design-notes wins; list any disagreement for me instead of choosing. I review before it's committed.
 
 ## Phase 2: Data
 
 - [ ] Migration: enums and tables from `docs/Data.md` **(review SQL yourself)**
 - [ ] Migration: RLS policies, public reads published only **(review yourself)**
-- [ ] Seed placeholder data (the ~15-row set in `docs/Data.md`), plus platforms and genres
+- [ ] Seed placeholder data (the set in `docs/Data.md`, at least 30 leaf works so pagination can be tested), plus platforms and genres
 - [ ] Generate TypeScript types from Supabase; add a small data-access layer (`lib/data/`)
 
 ## Phase 3: Public site
 
-- [ ] Site shell: header, mobile navigation, footer, visible search
-- [ ] Shared components: work card, release button, cover image with fallback
-- [ ] Home page: intro, featured works, latest works
-- [ ] Catalog page (रचनाएँ) with filters: kind, format, genre, platform
+- [ ] Site shell: paper background (texture layers), header, mobile 4-tab navigation, footer, visible search
+- [ ] Shared components: release "stamp" button, cloth-cover fallback, work row (contents style), save (bookmark) button
+- [ ] Home page: featured carousel (tap-only, never auto-rotates), latest works, browse-by-kind panel, books strip, about teaser
+- [ ] Catalog page (रचनाएँ): list + kind chips + filter groups (format, genre, platform), active-filter chips, count, sort, empty state
+- [ ] Catalog: all filters, search, sort, page and page size kept in the URL (back button and shared links restore them)
+- [ ] Catalog: pagination with page size 10 / 25 / 50 / 100 (default 10); reset to page 1 when anything else changes; scroll to top of results on page change
+- [ ] Search with voice input (`hi-IN`, browser Speech Recognition, progressive enhancement with Hindi fallback messages); header search on other pages leads to the catalog with the query
+- [ ] Favourites in local storage: save button on works, "सिर्फ़ सहेजी हुई" filter, "आपकी सहेजी रचनाएँ" section on the home page (hidden when empty)
 - [ ] Work page: poem / story / novel, with releases and "appears in"
 - [ ] Series page: parts in order, plus series-level releases
 - [ ] Collection and anthology pages: contents, print release, contributors
 - [ ] Books page (पुस्तकें): printed collections, anthologies and single-story books
 - [ ] About page (परिचय) from `author_profile`
-- [ ] Search across titles
-- [ ] 404 and empty states
+- [ ] 404 page and remaining empty states
+- [ ] Privacy note (one short page): voice search sends audio to the browser's speech service; saved list stays on the device
 
 ## Phase 4: Admin
 
@@ -49,6 +61,7 @@ Items marked **(you)** are done by you, not Claude.
 - [ ] Members editor for series, collections and anthologies (add, reorder)
 - [ ] Platforms and genres management
 - [ ] Author profile editor
+- [ ] Awards editor: add/edit/hide, mark featured, reorder featured
 - [ ] Revalidate public pages on save; publish/unpublish toggle
 - [ ] Test the admin with Hindi typing (Google Indic keyboard / phonetic input)
 
@@ -56,7 +69,8 @@ Items marked **(you)** are done by you, not Claude.
 
 - [ ] SEO: metadata per page, `Person` and `Book` JSON-LD, sitemap, robots
 - [ ] OG images with the Devanagari font embedded
-- [ ] Playwright smoke tests and phone and desktop screenshots of each page
+- [ ] Playwright smoke tests and phone and desktop screenshots of each page, incl. catalog filters + pagination, saving a work and seeing it on the home page
+- [ ] **(you)** Test voice search on a real Android phone in Chrome
 - [ ] Accessibility and design review with web-design-guidelines; fix the findings
 - [ ] Performance pass on a throttled mobile profile
 

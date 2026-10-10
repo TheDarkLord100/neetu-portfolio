@@ -1,6 +1,6 @@
 # Data Model — neetu-portfolio
 
-Status: draft for review · 10 Oct 2026
+Status: updated after catalog design · 10 Oct 2026
 
 ## Decisions so far
 
@@ -46,7 +46,8 @@ Separate **the creative piece** (`works`) from **where it was released** (`relea
 | `published_on` | date | first appearance, used for sorting |
 | `featured` | bool | default false |
 | `editor` | text | anthologies only |
-| `contributors` | text | anthologies only, e.g. "with X, Y, Z" |
+| `featured_contributors` | text[] | anthologies only: 2–3 prominent co-authors, shown by name |
+| `contributors_total` | int | anthologies only: total authors incl. her; the page shows "और N अन्य लेखक" for the rest |
 | `created_at` / `updated_at` | timestamptz | |
 
 ### `work_members`
@@ -88,7 +89,21 @@ Genres are a table rather than a text array so filter labels have Hindi and Engl
 
 ### `author_profile` (single row)
 
-`bio_hi`, `bio_en`, `photo_path`, `awards_hi`, `awards_en`, social links. Feeds the About page and the footer.
+`bio_hi`, `bio_en`, `quote_hi`, `quote_en`, `photo_path`, `email`, social links. Feeds the About page and the footer.
+
+### `awards`
+
+| Column | Type | Notes |
+|---|---|---|
+| `id` | uuid pk | |
+| `title_hi` / `title_en` | text | award or competition name |
+| `organiser_hi` / `organiser_en` | text | institution or platform |
+| `year` | int | used for grouping |
+| `featured` | bool | shown under "प्रमुख सम्मान" (aim for 3–4) |
+| `visible` | bool | default true; lets her hide one without deleting it |
+| `sort_order` | int | order within featured |
+
+About page: featured awards in full, then a "और सम्मान देखें (n)" disclosure with the rest grouped by year, one line each. Nothing is marked as paid; she decides what to feature, show or hide.
 
 ## How real cases map
 
@@ -100,7 +115,7 @@ Genres are a table rather than a text array so filter labels have Hindi and Engl
 | Chaptered novel on Pratilipi | `novel` + `online` release with `chapter_count` |
 | Two-part novel + audiobook | `series` → two `novel` children. Each part has an `online` release. The Kuku FM `audiobook` release attaches to the series (or to each part, if released separately) |
 | Poem / story compilation book | `collection` → its poems/stories, plus a `print` release |
-| Collaborative book | `anthology` → her pieces in it, plus a `print` release, with `editor` / `contributors` filled in |
+| Collaborative book | `anthology` → her pieces in it, plus a `print` release, with `editor`, `featured_contributors` (2–3 names) and `contributors_total` filled in. Shown as "नीतू, A, B, C और 24 अन्य लेखक" |
 | Chapters | not modelled; `chapter_count` on the release, linking to the Pratilipi series page |
 
 ## Rules (enforced in admin form validation, not DB constraints)
@@ -108,7 +123,7 @@ Genres are a table rather than a text array so filter labels have Hindi and Engl
 - Only `series`, `collection` and `anthology` works may have members.
 - A `series` contains only `novel` children.
 - `narrator` only for `audiobook`; `publisher` / `isbn` only for `print` / `ebook`; `chapter_count` only for `online`.
-- `editor` / `contributors` only for `anthology`.
+- `editor` / `featured_contributors` / `contributors_total` only for `anthology`; at most 3 featured contributors; `contributors_total` ≥ 1 + number of featured.
 - Slug is generated from the title by transliteration and stays editable.
 
 ## Access (RLS)
@@ -120,11 +135,34 @@ Genres are a table rather than a text array so filter labels have Hindi and Engl
 ## Site usage notes
 
 - One canonical URL per work, from `works.slug`.
-- The catalog lists leaf works (poem / story / novel). Books and series appear as their own filter group.
-- Filters: kind, format available (e.g. has audiobook), genre, platform.
 - A work page shows releases as buttons, "appears in" for its parents, and ordered parts for a series.
 
-## Placeholder seed set (~15 rows)
+## Catalog query rules
+
+- **Lists leaf works only:** `poem`, `story`, `novel` (including series parts). Series, collections and anthologies are reached from their parts and from the Books page.
+- **Effective releases** of a work = its own releases **plus** releases of any parent `series`. So a series-level Kuku FM audiobook shows "सुनें" on भाग 1 and भाग 2, and they match the audiobook filter. Releases of a parent `collection` / `anthology` are **not** inherited; those appear as "इसमें भी शामिल: <book>" instead.
+- **Filters:**
+  - kind (`story` / `poem` / `novel`)
+  - format available (`online` / `audiobook` / `print`, from effective releases)
+  - genre
+  - platform (from effective releases)
+  - saved-only (client-side, see below)
+- **Filter logic:** options within a group are OR; groups combine with AND. Counts beside options are totals over all published leaf works (not recalculated per selection).
+- **Search:** matches `title_hi` and `synopsis_hi` (first line), case-insensitive, ignoring the nukta (़) so "खामोशी" finds "ख़ामोशी". Postgres: use an `unaccent`-style normalised column or a generated column with nukta stripped, plus `ilike`. For 100+ works this is fine without full-text search.
+- **Sort:** newest first (`published_on desc`, default), oldest first, or by title (Hindi collation).
+- **Pagination:** page size 10 / 25 / 50 / 100 (default 10). Return the total count with each page.
+- **URL state:** `?q=&kind=&format=&genre=&platform=&saved=1&sort=&per=&page=`. Every param is optional, and invalid values fall back to defaults.
+
+## Client-only data: favourites
+
+Not stored in the database. The reader's saved list lives in the browser's `localStorage`:
+
+- Key `neetu-saved-v1`, value: a JSON array of work **slugs** in save order (newest first).
+- The site fetches current titles and releases for those slugs. Slugs that no longer resolve (deleted or unpublished) are dropped silently and the stored list is cleaned.
+- No login, no syncing between devices. The UI says so.
+- If a work's slug changes in admin, saved entries for the old slug stop resolving. Acceptable for now; revisit if slugs change often (could add a `previous_slugs` text[] column).
+
+## Placeholder seed set
 
 - 4 short stories (one also has a `print` release, as the single-story book)
 - 3 poems (2 belong to a poem `collection`)
@@ -132,6 +170,7 @@ Genres are a table rather than a text array so filter labels have Hindi and Engl
 - 1 `series` with 2 `novel` parts, plus an `audiobook` release on the series
 - 1 `anthology` containing one of the stories
 - 1 `draft` work, to confirm it stays hidden
+- About 24 more simple leaf works (stories, poems, a few novels) so the catalog has 30+ items for testing pagination and filters. The catalog mockup's sample list can be reused.
 
 ## Deferred
 

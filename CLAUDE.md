@@ -8,7 +8,8 @@ A Hindi-first portfolio and hub site for Neetu (नीतू), a Hindi writer. I
 
 - `docs/Data.md`: the data model. Source of truth for tables, enums and rules.
 - `docs/ROADMAP.md`: the task list. Work on one item at a time.
-- `DESIGN.md`: the visual system (added after the mockups). Never invent colours, fonts or spacing outside it.
+- `DESIGN.md`: the visual system (added after the mockups). Never invent colours, fonts or spacing outside it. Until it exists, `docs/design-notes.md` holds the approved decisions; follow it.
+- `docs/mockups/`: approved page images (phone 390px and desktop 1440px, every variant), indexed in `docs/mockups/INDEX.md`. When building a page, open its images and match them; compare your Playwright screenshots against them. If an image and design-notes disagree, design-notes wins.
 
 ## Stack
 
@@ -57,7 +58,16 @@ I make decisions and review results; I don't read most of the code. So:
 - Navigation has at most 4 top-level sections, and search stays visible.
 - Fonts via `next/font` with the Devanagari subset.
 - Keep pages light: optimised images through `next/image`, no heavy animation libraries.
-- If a design skill's advice conflicts with DESIGN.md or these rules, DESIGN.md and this file win.
+- Nothing moves on its own: no auto-rotating carousels or auto-advancing content. The featured carousel changes only when the reader taps.
+- If a design skill's advice conflicts with DESIGN.md / design-notes.md or these rules, those files win.
+
+## Client-side features
+
+- **Catalog state lives in the URL** (search params: `q`, `kind`, `format`, `genre`, `platform`, `saved`, `sort`, `per`, `page`). Back button and shared links must restore the exact view. Any change other than `page` resets `page` to 1. On page change, scroll to the top of the results.
+- **Favourites** use `localStorage` key `neetu-saved-v1` (JSON array of work slugs). Only read or write it in client components, after mount (in an effect), never during render, so there is no hydration mismatch. Wrap every access in try/catch and treat failure as an empty list. Listen for the `storage` event so other tabs stay in sync. Drop slugs that no longer resolve.
+- **Voice search** is a progressive enhancement: use `window.SpeechRecognition || window.webkitSpeechRecognition` with `lang = 'hi-IN'` and interim results. Feature-detect after mount. If it's unsupported, permission is denied or recognition fails, show the Hindi fallback messages from design-notes and keep typing working. Never block search on it. Stop recognition on unmount.
+- **Search matching** ignores the nukta (़) and case on both the query and the data.
+- Don't add libraries for any of these; the browser APIs are enough.
 
 ## Data and security rules
 
