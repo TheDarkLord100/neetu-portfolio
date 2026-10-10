@@ -33,7 +33,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [x] Migration: RLS policies, public reads published only **(review yourself)**
 - [x] Storage buckets for covers and author photo: public read, admin-only upload **(review yourself)**
 - [x] Seed placeholder data (the set in `docs/Data.md`, at least 30 leaf works so pagination can be tested), plus platforms and genres
-- [ ] Generate TypeScript types from Supabase; add a small data-access layer (`lib/data/`)
+- [x] Generate TypeScript types from Supabase; add a small data-access layer (`lib/data/`)
 
 ## Phase 3: Public site
 
@@ -63,7 +63,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [ ] Platforms and genres management
 - [ ] Author profile editor
 - [ ] Awards editor: add/edit/hide, mark featured, reorder featured
-- [ ] Revalidate public pages on save; publish/unpublish toggle
+- [ ] Revalidate public pages on save (`updateTag("works")` for works, releases, members, genres, platforms; `updateTag("site")` for author profile and awards; see `lib/data/store.ts`, `lib/data/site.ts`); publish/unpublish toggle
 - [ ] Test the admin with Hindi typing (Google Indic keyboard / phonetic input)
 
 ## Phase 5: Quality
