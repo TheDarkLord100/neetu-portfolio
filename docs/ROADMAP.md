@@ -46,8 +46,8 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [x] Search with voice input (`hi-IN`, browser Speech Recognition, progressive enhancement with Hindi fallback messages), on the रचनाएँ page only (no header search)
 - [x] Favourites in local storage: save button on works, "सिर्फ़ सहेजी हुई" filter, "आपकी सहेजी रचनाएँ" section on the home page (hidden when empty)
 - [x] Work page: poem / story / novel, with releases and "appears in"
-- [ ] Series page: parts in order, plus series-level releases
-- [ ] Collection and anthology pages: contents, print release, contributors
+- [x] Series page: parts in order, plus series-level releases
+- [x] Collection and anthology pages: contents, print release, contributors
 - [ ] Books page (पुस्तकें): printed collections, anthologies and single-story books
 - [ ] About page (परिचय) from `author_profile`
 - [ ] 404 page and remaining empty states
