@@ -103,7 +103,14 @@
     "invalidYear": "Enter a year between 1900 and 2100.",
     "invalidEmail": "Enter a valid email address.",
     "viewOnSite": "View on site",
-    "newWindow": "(opens in a new window)"
+    "newWindow": "(opens in a new window)",
+    "unsaved": "You have unsaved changes.",
+    "invalidDate": "Enter a valid date.",
+    "invalidMember": "This work can't be added here.",
+    "invalidPlatform": "Choose a platform from the list.",
+    "kindLocked": "The kind can't change while this work has parts or contents.",
+    "kindInParent": "This work is part of a series or book that doesn't allow this kind.",
+    "contributorsTotalTooSmall": "Too small."
   },
   "kinds": {
     "poem": "Poem",
@@ -201,7 +208,9 @@
     "deleteTitle": "Delete this work",
     "deleteBody": "Deletes the work, its releases and its place in any series or book. This can't be undone. To hide it instead, set it to Draft.",
     "deleteConfirm": "Type the title to confirm: {title}",
-    "deleteButton": "Delete permanently"
+    "deleteButton": "Delete permanently",
+    "kindInParent": "This work is part of a series or book that doesn't allow this kind.",
+    "leaveWarning": "You have unsaved changes. Leave without saving?"
   },
   "releases": {
     "title": "Where it's available",
@@ -258,7 +267,8 @@
       "covers": "Covers",
       "author": "Author photos",
       "platforms": "Platform logos"
-    }
+    },
+    "close": "Close"
   },
   "platforms": {
     "title": "Platforms & genres",
