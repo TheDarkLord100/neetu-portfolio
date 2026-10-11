@@ -46,3 +46,52 @@ export function ChevronRightIcon(props: IconProps) {
     </Svg>
   );
 }
+
+export function CloseIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M6 6l12 12M18 6 6 18" />
+    </Svg>
+  );
+}
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="m5 12.5 4.5 4.5L19 7.5" />
+    </Svg>
+  );
+}
+
+export function MicIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" />
+    </Svg>
+  );
+}
+
+export function FilterIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M4 7h16M7 12h10M10 17h4" />
+    </Svg>
+  );
+}
+
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="m6 9 6 6 6-6" />
+    </Svg>
+  );
+}
+
+export function OpenBookIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5Zm0 0V19" />
+    </Svg>
+  );
+}

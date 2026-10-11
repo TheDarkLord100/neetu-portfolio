@@ -12,7 +12,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const { meta } = await getMessages();
-  return { title: meta.title, description: meta.description };
+  return { title: { default: meta.title, template: meta.titleTemplate }, description: meta.description };
 }
 
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {

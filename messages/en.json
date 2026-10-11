@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "Neetu Singh",
-    "description": "Neetu Singh — Hindi writer. Poems, stories and novels."
+    "description": "Neetu Singh — Hindi writer. Poems, stories and novels.",
+    "titleTemplate": "%s — Neetu Singh"
   },
   "site": {
     "name": "Neetu Singh",
@@ -124,5 +125,90 @@
     "detail": "{kind}, {publisher}",
     "contributors": "Neetu Singh and {count} other writers",
     "partsCount": "{count} parts"
+  },
+  "catalog": {
+    "meta": {
+      "title": "Works"
+    },
+    "heading": "Works",
+    "intro": "All of Neetu Singh's stories, poems and novels, each with where to read, listen to or buy it.",
+    "search": {
+      "label": "Search by title or any word",
+      "placeholder": "e.g. बारिश की रात or barish",
+      "clear": "Clear search",
+      "submit": "Search"
+    },
+    "voice": {
+      "start": "Speak",
+      "stop": "Stop",
+      "startLabel": "Search by voice",
+      "stopLabel": "Stop listening",
+      "listening": "Listening… say the title of a work",
+      "unsupported": "Voice search isn't available in this browser. Please type the title.",
+      "denied": "Microphone permission was not given. Allow the microphone in your browser, or type the title.",
+      "noMatch": "Couldn't understand clearly. Press \"Speak\" and try again."
+    },
+    "kinds": {
+      "label": "Type of work",
+      "all": "All",
+      "story": "Story",
+      "poem": "Poem",
+      "novel": "Novel"
+    },
+    "filters": {
+      "label": "Filters",
+      "more": "More filters",
+      "moreCount": "More filters ({count} selected)",
+      "show": "Show {count} works",
+      "showOne": "Show 1 work",
+      "clearAll": "Clear all filters",
+      "groups": {
+        "saved": "Your list",
+        "formats": "Available as",
+        "genres": "Genre",
+        "platforms": "Where to find"
+      },
+      "savedOnly": "Saved only",
+      "formats": {
+        "online": "To read",
+        "audiobook": "To listen (audiobook)",
+        "print": "Printed book"
+      },
+      "countLabel": "{count} works"
+    },
+    "active": {
+      "label": "Selected filters",
+      "search": "Search: {q}",
+      "saved": "Saved",
+      "audiobookShort": "Audiobook",
+      "remove": "Remove {label}"
+    },
+    "results": {
+      "count": "{count} works",
+      "countOne": "1 work",
+      "countOf": "{count} of {total} works",
+      "countOfOne": "1 of {total} works",
+      "perPage": "Per page",
+      "sort": "Order",
+      "sorts": {
+        "new": "Newest first",
+        "old": "Oldest first",
+        "title": "By title"
+      },
+      "label": "Search results"
+    },
+    "pagination": {
+      "label": "Pages",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {page}",
+      "pageOf": "Page {page} / {pages}",
+      "range": "Showing {from}–{to} of {total}"
+    },
+    "empty": {
+      "heading": "No works found",
+      "body": "No work matches the selected filters. Remove a filter above, or clear them all at once.",
+      "savedBody": "You haven't saved any work yet. Press \"Save\" on any work and it will appear here and on the home page."
+    }
   }
 }
