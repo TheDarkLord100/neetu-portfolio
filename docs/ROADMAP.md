@@ -45,7 +45,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [x] Catalog: pagination with page size 10 / 25 / 50 / 100 (default 10); reset to page 1 when anything else changes; scroll to top of results on page change
 - [x] Search with voice input (`hi-IN`, browser Speech Recognition, progressive enhancement with Hindi fallback messages), on the रचनाएँ page only (no header search)
 - [x] Favourites in local storage: save button on works, "सिर्फ़ सहेजी हुई" filter, "आपकी सहेजी रचनाएँ" section on the home page (hidden when empty)
-- [ ] Work page: poem / story / novel, with releases and "appears in"
+- [x] Work page: poem / story / novel, with releases and "appears in"
 - [ ] Series page: parts in order, plus series-level releases
 - [ ] Collection and anthology pages: contents, print release, contributors
 - [ ] Books page (पुस्तकें): printed collections, anthologies and single-story books
