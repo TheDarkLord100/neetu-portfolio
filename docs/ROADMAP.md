@@ -77,7 +77,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 
 ## Phase 6: Launch
 
-- [ ] **(you)** Buy the domain
+- [x] **(you)** Buy the domain (neetusingh.co.in)
 - [ ] Deploy to Vercel; production Supabase env; custom domain
 - [ ] **(you)** Replace placeholders with real works
 - [ ] **(you)** Platform logos: official files from each platform's brand/press page as PNG or WebP, at least 256px square (no SVG; the storage bucket refuses it). Lettered placeholders until then; uploaded via admin

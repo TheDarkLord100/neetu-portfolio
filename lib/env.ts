@@ -34,7 +34,23 @@ function validatePublishableKey(value: string): string {
   return value;
 }
 
+// The public site's own address, for canonical links, the sitemap and link
+// previews. Set NEXT_PUBLIC_SITE_URL (https://neetusingh.co.in); on Vercel it
+// falls back to the production domain, locally to localhost.
+function siteUrl(): string {
+  const value =
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "") ||
+    "http://localhost:3000";
+  try {
+    return new URL(value).origin;
+  } catch {
+    throw new Error(`NEXT_PUBLIC_SITE_URL is not a valid URL: "${value}"`);
+  }
+}
+
 export const env = {
+  siteUrl: siteUrl(),
   supabaseUrl: validateUrl(
     required("NEXT_PUBLIC_SUPABASE_URL", process.env.NEXT_PUBLIC_SUPABASE_URL),
   ),

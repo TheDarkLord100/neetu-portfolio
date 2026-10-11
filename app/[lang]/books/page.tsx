@@ -7,11 +7,16 @@ import { getBooks } from "@/lib/data/books";
 import type { BookSummary } from "@/lib/data/types";
 import { formatParts } from "@/lib/i18n/format";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
-import { routesFor } from "@/lib/routes";
+import { routes as canonicalRoutes, routesFor } from "@/lib/routes";
+import { fullTitle, pageSeo } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { booksPage } = await getMessages();
-  return { title: booksPage.meta.title, description: booksPage.intro };
+  const [m, locale] = await Promise.all([getMessages(), getLocale()]);
+  return {
+    title: m.booksPage.meta.title,
+    description: m.booksPage.intro,
+    ...pageSeo({ path: canonicalRoutes.books, locale, title: fullTitle(m, m.booksPage.meta.title), description: m.booksPage.intro }),
+  };
 }
 
 // Group order, anchors and swatches (DESIGN.md §7.4). Anchors are linked from

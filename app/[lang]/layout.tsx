@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
+import { env } from "@/lib/env";
 import { fontVariables } from "@/lib/fonts";
 import { enabledLocales } from "@/lib/i18n/config";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
@@ -12,7 +13,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const { meta } = await getMessages();
-  return { title: { default: meta.title, template: meta.titleTemplate }, description: meta.description };
+  return {
+    metadataBase: new URL(env.siteUrl),
+    title: { default: meta.title, template: meta.titleTemplate },
+    description: meta.description,
+  };
 }
 
 export default async function RootLayout({ children }: LayoutProps<"/[lang]">) {

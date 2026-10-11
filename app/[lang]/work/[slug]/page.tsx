@@ -13,7 +13,9 @@ import { getAllWorks, getWork } from "@/lib/data/works";
 import { formatMonthYear } from "@/lib/i18n/date";
 import { format, formatParts } from "@/lib/i18n/format";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
-import { routesFor } from "@/lib/routes";
+import { routes as canonicalRoutes, routesFor } from "@/lib/routes";
+import { authorNames, fullTitle, pageSeo, workJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 
 // Every published work's page is prerendered; new ones render on first visit.
 export async function generateStaticParams() {
@@ -22,9 +24,21 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/work/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const work = await getWork(slug);
+  const [m, locale] = await Promise.all([getMessages(), getLocale()]);
+  const work = await getWork(slug, locale);
   if (!work) return {};
-  return { title: work.title, description: work.synopsis ?? undefined };
+  return {
+    title: work.title,
+    description: work.synopsis ?? undefined,
+    ...pageSeo({
+      path: canonicalRoutes.work(work.slug),
+      locale,
+      title: fullTitle(m, work.title),
+      description: work.synopsis,
+      imagePath: work.coverPath,
+      type: work.kind === "novel" ? "book" : "article",
+    }),
+  };
 }
 
 const VERB_ORDER: ReleaseVerb[] = ["read", "listen", "buy"];
@@ -62,6 +76,7 @@ export default async function WorkPage({ params }: PageProps<"/[lang]/work/[slug
 
   return (
     <div className="page-container pt-6 pb-16 desk:pt-10 desk:pb-24">
+      <JsonLd data={workJsonLd(work, routes.work(work.slug), authorNames(locale))} />
       <Breadcrumb
         label={w.breadcrumb}
         items={[

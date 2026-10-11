@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
-import { getMessages } from "@/lib/i18n/messages";
+import { getLocale, getMessages } from "@/lib/i18n/messages";
+import { fullTitle, pageSeo } from "@/lib/seo";
+import { routes as canonicalRoutes } from "@/lib/routes";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { privacy } = await getMessages();
-  return { title: privacy.meta.title, description: privacy.intro };
+  const [m, locale] = await Promise.all([getMessages(), getLocale()]);
+  return {
+    title: m.privacy.meta.title,
+    description: m.privacy.intro,
+    ...pageSeo({ path: canonicalRoutes.privacy, locale, title: fullTitle(m, m.privacy.meta.title), description: m.privacy.intro }),
+  };
 }
 
 // Privacy note (roadmap): saved list stays on the device; voice search uses the

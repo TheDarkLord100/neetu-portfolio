@@ -5,10 +5,17 @@ import { countCatalog } from "@/lib/catalog/rules";
 import { getCatalogItems } from "@/lib/data/catalog";
 import { getGenres, getPlatforms } from "@/lib/data/site";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
+import { fullTitle, pageSeo } from "@/lib/seo";
+import { routes as canonicalRoutes } from "@/lib/routes";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { catalog } = await getMessages();
-  return { title: catalog.meta.title };
+  const [m, locale] = await Promise.all([getMessages(), getLocale()]);
+  return {
+    title: m.catalog.meta.title,
+    description: m.catalog.intro,
+    // Every filter / search combination points to the plain catalog.
+    ...pageSeo({ path: canonicalRoutes.works, locale, title: fullTitle(m, m.catalog.meta.title), description: m.catalog.intro }),
+  };
 }
 
 /**

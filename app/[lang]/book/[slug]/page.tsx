@@ -15,7 +15,9 @@ import { getWork } from "@/lib/data/works";
 import { formatMonthYear, formatYear } from "@/lib/i18n/date";
 import { format } from "@/lib/i18n/format";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
-import { routesFor } from "@/lib/routes";
+import { routes as canonicalRoutes, routesFor } from "@/lib/routes";
+import { authorNames, bookJsonLd, fullTitle, pageSeo } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 
 // Every published series, collection and anthology is prerendered.
 export async function generateStaticParams() {
@@ -25,9 +27,21 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/book/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const book = await getBook(slug);
+  const [m, locale] = await Promise.all([getMessages(), getLocale()]);
+  const book = await getBook(slug, locale);
   if (!book) return {};
-  return { title: book.title, description: book.synopsis ?? undefined };
+  return {
+    title: book.title,
+    description: book.synopsis ?? undefined,
+    ...pageSeo({
+      path: canonicalRoutes.book(book.slug),
+      locale,
+      title: fullTitle(m, book.title),
+      description: book.synopsis,
+      imagePath: book.coverPath,
+      type: "book",
+    }),
+  };
 }
 
 // पुस्तक / धारावाहिक (DESIGN.md §7.5): series, collection or anthology.
@@ -106,6 +120,7 @@ export default async function BookPage({ params }: PageProps<"/[lang]/book/[slug
 
   return (
     <div className="page-container pt-6 pb-16 desk:pt-10 desk:pb-24">
+      <JsonLd data={bookJsonLd(book, routes.book(book.slug), authorNames(locale))} />
       <Breadcrumb
         label={b.breadcrumb}
         items={[{ label: m.nav.books, href: routes.books }, { label: book.title, lang: "hi" }]}

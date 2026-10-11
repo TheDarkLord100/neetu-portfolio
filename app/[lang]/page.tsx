@@ -13,12 +13,21 @@ import { WorkRow } from "@/components/work/work-row";
 import { getBooks } from "@/lib/data/books";
 import { getCatalogItems } from "@/lib/data/catalog";
 import { imageUrl } from "@/lib/data/images";
-import { getAuthorProfile } from "@/lib/data/site";
+import { getAuthorProfile, getAwards, getPlatforms } from "@/lib/data/site";
 import { getAllWorks, getFeaturedWorks } from "@/lib/data/works";
 import { homeConfig } from "@/lib/config/home";
 import { formatMonthYear } from "@/lib/i18n/date";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
-import { routesFor } from "@/lib/routes";
+import { routes as canonicalRoutes, routesFor } from "@/lib/routes";
+import type { Metadata } from "next";
+import { authorNames, pageSeo, personJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const [{ meta }, profile] = await Promise.all([getMessages(), getAuthorProfile(locale)]);
+  return pageSeo({ path: canonicalRoutes.home, locale, title: meta.title, description: meta.description, imagePath: profile?.photoPath, type: "profile" });
+}
 
 // मुखपृष्ठ (DESIGN.md §7.1). Fully pre-rendered; only the carousel and the
 // saved-works section run in the browser.
@@ -31,6 +40,7 @@ export default async function Home() {
     getBooks(locale),
     getAuthorProfile(locale),
   ]);
+  const [awards, platforms] = await Promise.all([getAwards(locale), getPlatforms(locale)]);
 
   const routes = routesFor(locale);
   const latest = allWorks.slice(0, homeConfig.latestCount);
@@ -49,6 +59,7 @@ export default async function Home() {
 
   return (
     <>
+      <JsonLd data={personJsonLd({ names: authorNames(locale), locale, profile, platforms, awards })} />
       <div className="page-container pt-8 pb-16 desk:pt-16 desk:pb-20">
         {featured.length > 0 && (
           <FeaturedCarousel

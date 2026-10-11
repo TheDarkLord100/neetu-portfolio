@@ -7,11 +7,25 @@ import { imageUrl } from "@/lib/data/images";
 import { getAuthorProfile, getAwards, getPlatforms } from "@/lib/data/site";
 import { format } from "@/lib/i18n/format";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
-import { routesFor } from "@/lib/routes";
+import { routes as canonicalRoutes, routesFor } from "@/lib/routes";
+import { authorNames, fullTitle, pageSeo, personJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [{ aboutPage }, profile] = await Promise.all([getMessages(), getAuthorProfile(await getLocale())]);
-  return { title: aboutPage.meta.title, description: profile?.intro ?? undefined };
+  const locale = await getLocale();
+  const [m, profile] = await Promise.all([getMessages(), getAuthorProfile(locale)]);
+  return {
+    title: m.aboutPage.meta.title,
+    description: profile?.intro ?? undefined,
+    ...pageSeo({
+      path: canonicalRoutes.about,
+      locale,
+      title: fullTitle(m, m.aboutPage.meta.title),
+      description: profile?.intro,
+      imagePath: profile?.photoPath,
+      type: "profile",
+    }),
+  };
 }
 
 const isEmail = (value: string | null): value is string => !!value && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -34,6 +48,7 @@ export default async function AboutPage() {
 
   return (
     <div className="page-container pt-10 pb-16 desk:pt-16 desk:pb-24">
+      <JsonLd data={personJsonLd({ names: authorNames(locale), locale, profile, platforms, awards })} />
       {/* Intro: photo as a print, name, tagline, short bio, buttons */}
       <section className="flex flex-col items-center gap-10 desk:flex-row desk:items-start desk:gap-20">
         {photo && (
