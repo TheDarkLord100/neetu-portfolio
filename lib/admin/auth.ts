@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { cache } from "react";
 import { createServerClient } from "@/lib/supabase/server";
 
@@ -20,6 +21,9 @@ export type AdminState =
  * through is_admin()). Memoised per request.
  */
 export const getAdminState = cache(async (): Promise<AdminState> => {
+  // Per request only: the token check compares its expiry with the current
+  // time (Date.now()), which must never run during prerendering.
+  await connection();
   const supabase = await createServerClient();
   const { data, error } = await supabase.auth.getClaims();
   const claims = data?.claims;

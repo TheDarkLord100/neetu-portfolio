@@ -55,7 +55,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 
 ## Phase 4: Admin
 
-- [ ] Supabase Auth login at `/admin`, with server-side session checks **(review yourself)**
+- [x] Supabase Auth login at `/admin`, with server-side session checks **(review yourself)**
 - [ ] Works list: search, filter by kind and status
 - [ ] Work form: fields, slug transliteration, cover upload, genres, live preview
 - [ ] Releases editor within the work form, with per-format fields
