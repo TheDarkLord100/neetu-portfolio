@@ -12,6 +12,7 @@ export const routes = {
   books: "/books",
   book: (slug: string) => `/book/${slug}`,
   about: "/about",
+  privacy: "/privacy",
 } as const;
 
 /** Adds the language prefix to an unprefixed path ("/works" → "/en/works"). */
@@ -29,6 +30,7 @@ export function routesFor(locale: Locale) {
     books: localize(routes.books, locale),
     book: (slug: string) => localize(routes.book(slug), locale),
     about: localize(routes.about, locale),
+    privacy: localize(routes.privacy, locale),
   };
 }
 

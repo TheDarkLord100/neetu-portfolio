@@ -26,7 +26,7 @@ function ExternalLink({ href, children, newWindow }: { href: string; children: R
 /** Same footer on every page (DESIGN.md §6.2). */
 export async function SiteFooter() {
   const locale = await getLocale();
-  const [{ site, nav, footer, a11y }, profile, platforms, year] = await Promise.all([
+  const [{ site, nav, footer, a11y, privacy }, profile, platforms, year] = await Promise.all([
     getMessages(),
     getAuthorProfile(locale),
     getPlatforms(locale),
@@ -96,9 +96,12 @@ export async function SiteFooter() {
           </div>
         </div>
 
-        <p className="mt-12 border-t border-footer-text-soft/25 pt-6 text-meta text-footer-text-soft">
-          {format(footer.copyright, { year })}
-        </p>
+        <div className="mt-12 flex flex-col gap-2 border-t border-footer-text-soft/25 pt-6 text-meta text-footer-text-soft desk:flex-row desk:items-center desk:justify-between">
+          <p>{format(footer.copyright, { year })}</p>
+          <Link href={routes.privacy} className={linkClass}>
+            {privacy.link}
+          </Link>
+        </div>
       </div>
     </footer>
   );

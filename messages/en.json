@@ -359,5 +359,36 @@
       "social": "Social media:",
       "emailLabel": "Send an email: {email}"
     }
+  },
+  "notFound": {
+    "meta": {
+      "title": "Page not found"
+    },
+    "heading": "This page could not be found",
+    "body": "The address may have been mistyped, or this work may no longer be here. Go to the home page or see all works.",
+    "home": "Go to the home page",
+    "works": "See all works"
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy"
+    },
+    "heading": "Privacy",
+    "intro": "This website does not ask for any personal information and does not create accounts.",
+    "sections": [
+      {
+        "heading": "Saved works",
+        "body": "When you press \"Save\" on a work, the list stays only in the browser on this phone or computer. It is not sent to us or anyone else. Clearing your browser data removes it."
+      },
+      {
+        "heading": "Voice search",
+        "body": "The \"Speak\" button uses your browser's speech recognition. Some browsers, such as Chrome, send your voice to their own service (such as Google) to understand it. It only runs when you press \"Speak\", and you can always type instead."
+      },
+      {
+        "heading": "Other websites",
+        "body": "The Read, Listen and Buy buttons take you to websites such as Pratilipi, Kuku FM or Amazon. Their own privacy policies apply there."
+      }
+    ],
+    "link": "Privacy"
   }
 }
