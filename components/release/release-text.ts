@@ -1,11 +1,15 @@
-import type { Release } from "@/lib/data/types";
+import type { Release, WorkKind } from "@/lib/data/types";
 import { format } from "@/lib/i18n/format";
 import type { Messages } from "@/lib/i18n/messages";
 
 type ReleaseMessages = Messages["release"];
 
-/** Detail line under/beside a stamp (DESIGN.md §6.6), from release data. */
-export function releaseDetail(release: Release, m: ReleaseMessages): string {
+/**
+ * Detail line under/beside a stamp (DESIGN.md §6.6), from release data.
+ * `ownerKind` is the kind of the page's work (a series page's own audiobook
+ * reads "पूरे धारावाहिक का ऑडियोबुक").
+ */
+export function releaseDetail(release: Release, m: ReleaseMessages, ownerKind?: WorkKind): string {
   const d = m.detail;
   const platform = release.platform.name;
   switch (release.format) {
@@ -14,7 +18,7 @@ export function releaseDetail(release: Release, m: ReleaseMessages): string {
         ? format(d.onlineChapters, { platform, count: release.chapterCount })
         : format(d.online, { platform });
     case "audiobook": {
-      const fromSeries = release.inheritedFrom?.kind === "series";
+      const fromSeries = release.inheritedFrom?.kind === "series" || (!release.inheritedFrom && ownerKind === "series");
       if (release.narrator) {
         return format(fromSeries ? d.seriesAudiobook : d.audiobook, { narrator: release.narrator });
       }

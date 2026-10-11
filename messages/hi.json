@@ -263,5 +263,47 @@
       "viewAll": "सभी रचनाएँ देखें"
     },
     "partCover": "भाग {position}"
+  },
+  "bookPage": {
+    "breadcrumb": "पेज का रास्ता",
+    "allBooks": "सभी पुस्तकें",
+    "printed": "छपी हुई किताब",
+    "facts": {
+      "label": "पुस्तक की जानकारी",
+      "parts": "भाग",
+      "firstPart": "पहला भाग",
+      "latestPart": "ताज़ा भाग",
+      "genres": "विषय",
+      "publisher": "प्रकाशक",
+      "year": "प्रकाशन वर्ष",
+      "isbn": "ISBN",
+      "editor": "संपादक",
+      "writers": "लेखक",
+      "writersValue": "नीतू सिंह और {count} अन्य"
+    },
+    "releasesHeading": {
+      "seriesListen": "पूरा धारावाहिक सुनें",
+      "buy": "कहाँ खरीदें",
+      "read": "कहाँ पढ़ें",
+      "listen": "कहाँ सुनें",
+      "mixed": "कहाँ पढ़ें, सुनें या खरीदें"
+    },
+    "startReading": "भाग 1 से पढ़ना शुरू करें",
+    "contents": {
+      "series": "भाग",
+      "seriesNote": "हर भाग प्रतिलिपि पर अलग से पढ़ा जा सकता है।",
+      "collectionPoems": "इस संग्रह की कविताएँ",
+      "collectionStories": "इस संग्रह की कहानियाँ",
+      "collection": "इस संग्रह की रचनाएँ",
+      "anthologyOne": "इस संकलन में नीतू सिंह की रचना",
+      "anthologyMany": "इस संकलन में नीतू सिंह की रचनाएँ",
+      "part": "भाग {position}"
+    },
+    "contributors": {
+      "heading": "इस संकलन के लेखक",
+      "editor": "संपादक:",
+      "others": "और {count} अन्य लेखक",
+      "note": "इस वेबसाइट पर सिर्फ़ नीतू सिंह की रचनाएँ दी गई हैं। बाक़ी रचनाएँ पढ़ने के लिए पुस्तक देखें।"
+    }
   }
 }

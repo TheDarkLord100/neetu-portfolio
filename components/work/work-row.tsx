@@ -104,7 +104,7 @@ export function WorkRow({
   return (
     <article className={`flex gap-4 border-b border-line py-6 desk:gap-6 ${className}`}>
       {number && (
-        <span className="w-14 shrink-0 pt-1 font-heading text-h3 text-walnut desk:w-20">{number}</span>
+        <span className="shrink-0 pt-1 font-heading text-h3 whitespace-nowrap text-walnut desk:min-w-20">{number}</span>
       )}
       {showThumbnail && (
         <Link href={href} tabIndex={-1} aria-hidden="true" className="shrink-0 pt-1">

@@ -263,5 +263,47 @@
       "viewAll": "See all works"
     },
     "partCover": "Part {position}"
+  },
+  "bookPage": {
+    "breadcrumb": "Breadcrumb",
+    "allBooks": "All books",
+    "printed": "printed book",
+    "facts": {
+      "label": "About the book",
+      "parts": "Parts",
+      "firstPart": "First part",
+      "latestPart": "Latest part",
+      "genres": "Genres",
+      "publisher": "Publisher",
+      "year": "Year",
+      "isbn": "ISBN",
+      "editor": "Editor",
+      "writers": "Writers",
+      "writersValue": "Neetu Singh and {count} others"
+    },
+    "releasesHeading": {
+      "seriesListen": "Listen to the whole series",
+      "buy": "Where to buy",
+      "read": "Where to read",
+      "listen": "Where to listen",
+      "mixed": "Where to read, listen or buy"
+    },
+    "startReading": "Start reading from part 1",
+    "contents": {
+      "series": "Parts",
+      "seriesNote": "Each part can be read separately on Pratilipi.",
+      "collectionPoems": "Poems in this collection",
+      "collectionStories": "Stories in this collection",
+      "collection": "Works in this collection",
+      "anthologyOne": "Neetu Singh's work in this anthology",
+      "anthologyMany": "Neetu Singh's works in this anthology",
+      "part": "Part {position}"
+    },
+    "contributors": {
+      "heading": "Writers in this anthology",
+      "editor": "Editor:",
+      "others": "and {count} other writers",
+      "note": "Only Neetu Singh's works are on this website. See the book to read the others."
+    }
   }
 }
