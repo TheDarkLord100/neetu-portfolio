@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AccountMenu } from "@/components/admin/account-menu";
+import { AccountMenu, AdminNavSlot } from "@/components/admin/account-menu";
 import { AdminHeader } from "@/components/admin/admin-header";
 import { fontVariables } from "@/lib/fonts";
 import { getAdminMessages } from "@/lib/admin/messages";
@@ -28,6 +28,11 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
         </a>
         <AdminHeader
           messages={m.shell}
+          nav={
+            <Suspense fallback={null}>
+              <AdminNavSlot messages={m.nav} />
+            </Suspense>
+          }
           account={
             // Reads the login cookie, so it streams in per request.
             <Suspense fallback={null}>

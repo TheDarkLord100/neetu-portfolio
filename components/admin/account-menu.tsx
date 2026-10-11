@@ -1,6 +1,8 @@
 import { signOut } from "@/app/admin/actions";
 import { getAdminState } from "@/lib/admin/auth";
 import type { AdminMessages } from "@/lib/admin/messages";
+import { adminContainer } from "./admin-header";
+import { AdminNav } from "./admin-nav";
 import { format } from "@/lib/i18n/format";
 
 // Signed-in email and "Sign out", shown only to a signed-in admin.
@@ -18,5 +20,18 @@ export async function AccountMenu({ messages: m }: { messages: AdminMessages["sh
         {m.signOut}
       </button>
     </form>
+  );
+}
+
+/** Section links under the top bar, only for a signed-in admin. */
+export async function AdminNavSlot({ messages }: { messages: AdminMessages["nav"] }) {
+  const state = await getAdminState();
+  if (state.kind !== "admin") return null;
+  return (
+    <div className="border-t border-line">
+      <div className={`${adminContainer} py-1.5`}>
+        <AdminNav messages={messages} />
+      </div>
+    </div>
   );
 }

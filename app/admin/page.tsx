@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { adminContainer } from "@/components/admin/admin-header";
 import { requireAdmin } from "@/lib/admin/auth";
@@ -27,12 +28,14 @@ async function Dashboard() {
       <p className="mt-2 max-w-[var(--reading-max)] text-body text-ink-soft">{m.intro}</p>
       <ul className="mt-8 grid gap-4 tab:grid-cols-2">
         {m.sections.map((s) => (
-          <li key={s.key} className="rounded-panel border border-line bg-paper-raised p-5 desk:p-6">
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="text-h3">{s.title}</h2>
-              <span className="rounded-full border border-dashed border-line-strong px-2.5 text-meta text-ink-soft">{m.comingSoon}</span>
-            </div>
-            <p className="mt-2 text-ui text-ink-soft">{s.body}</p>
+          <li key={s.key}>
+            <Link
+              href={s.href}
+              className="block h-full rounded-panel border border-line bg-paper-raised p-5 hover:border-line-strong hover:bg-label-paper desk:p-6"
+            >
+              <h2 className="text-h3 text-walnut underline decoration-turmeric decoration-2 underline-offset-[6px]">{s.title}</h2>
+              <p className="mt-2 text-ui text-ink-soft">{s.body}</p>
+            </Link>
           </li>
         ))}
       </ul>
