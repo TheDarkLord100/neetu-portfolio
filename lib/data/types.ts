@@ -89,6 +89,8 @@ export type BookSummary = BookRef & {
   /** The release shown on book cards: print for books, audiobook for series. */
   mainRelease: Release | null;
   partsCount: number;
+  /** Distinct kinds of the visible contents, e.g. ["poem"] for a poetry collection. */
+  contentKinds: WorkKind[];
 };
 
 export type BookDetail = BookSummary & {

@@ -35,7 +35,9 @@
     "novel": "Novel",
     "series": "Serial novel",
     "collection": "Collection",
-    "anthology": "Anthology"
+    "anthology": "Anthology",
+    "collectionPoems": "Poetry collection",
+    "collectionStories": "Story collection"
   },
   "release": {
     "verbs": {
@@ -75,7 +77,52 @@
     "accessibleName": "Save {title}"
   },
   "home": {
-    "heading": "Neetu Singh",
-    "intro": "Hindi writer. Her poems, stories, novels and books in one place — along with everywhere you can read or listen to them."
+    "featured": {
+      "eyebrow": "Featured",
+      "region": "Featured works",
+      "counter": "{current} / {total}",
+      "slideLabel": "{current} of {total}: {title}",
+      "previous": "Previous",
+      "next": "Next",
+      "parts": "in {count} parts",
+      "seeParts": "See all parts",
+      "seeMore": "See details"
+    },
+    "saved": {
+      "heading": "Your saved works",
+      "note": "This list stays only in this phone's or computer's browser.",
+      "viewAll": "See all saved works ({count})",
+      "remove": "Remove",
+      "removeLabel": "Remove {title} from the list"
+    },
+    "latest": {
+      "heading": "New works",
+      "subheading": "Recently published stories, poems and novels",
+      "viewAll": "See all works"
+    },
+    "browse": {
+      "heading": "What would you like to read?",
+      "subheading": "Browse works by type",
+      "stories": "Stories",
+      "poems": "Poems",
+      "novels": "Novels",
+      "series": "Serial novels",
+      "audiobooks": "To listen (audiobooks)"
+    },
+    "books": {
+      "heading": "Books",
+      "subheading": "Printed books you can order home",
+      "viewAll": "See all books"
+    },
+    "about": {
+      "heading": "About Neetu Singh",
+      "more": "Read the full introduction",
+      "photoAlt": "Photo of Neetu Singh"
+    }
+  },
+  "book": {
+    "detail": "{kind}, {publisher}",
+    "contributors": "Neetu Singh and {count} other writers",
+    "partsCount": "{count} parts"
   }
 }

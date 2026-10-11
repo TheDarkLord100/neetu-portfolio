@@ -10,14 +10,23 @@ type Props = {
   /** Show the detail line for each stamp (default true). */
   showDetail?: boolean;
   layout?: ReleaseStampProps["layout"];
+  /** "column" (default): stacked. "row": side by side on desktop, stacked on phone. */
+  direction?: "column" | "row";
   className?: string;
 };
 
 /** A stack of release stamps, 12px apart (DESIGN.md §6.6). */
-export function ReleaseList({ releases, messages, showDetail = true, layout, className = "" }: Props) {
+export function ReleaseList({
+  releases,
+  messages,
+  showDetail = true,
+  layout,
+  direction = "column",
+  className = "",
+}: Props) {
   if (releases.length === 0) return null;
   return (
-    <ul className={`flex flex-col gap-3 ${className}`}>
+    <ul className={`flex flex-col gap-3 ${direction === "row" ? "desk:flex-row desk:flex-wrap" : ""} ${className}`}>
       {releases.map((r) => (
         <li key={r.id}>
           <ReleaseStamp

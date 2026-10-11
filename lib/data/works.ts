@@ -45,6 +45,12 @@ export async function getFeaturedWorks(
     .map((w) => (isLeafKind(w.kind) ? index.summary(w) : index.bookSummary(w)));
 }
 
+/** Every published catalog work, newest first (e.g. to resolve the reader's saved list). */
+export async function getAllWorks(locale: Locale = defaultLocale): Promise<WorkSummary[]> {
+  const index = getIndex(await loadStore(), locale);
+  return index.leafWorks().sort(byNewest).map(index.summary);
+}
+
 /** Newest catalog works for the home page. */
 export async function getLatestWorks(limit: number, locale: Locale = defaultLocale): Promise<WorkSummary[]> {
   const index = getIndex(await loadStore(), locale);

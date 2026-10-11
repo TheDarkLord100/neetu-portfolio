@@ -35,7 +35,9 @@
     "novel": "उपन्यास",
     "series": "धारावाहिक उपन्यास",
     "collection": "संग्रह",
-    "anthology": "साझा संकलन"
+    "anthology": "साझा संकलन",
+    "collectionPoems": "कविता संग्रह",
+    "collectionStories": "कहानी संग्रह"
   },
   "release": {
     "verbs": {
@@ -75,7 +77,52 @@
     "accessibleName": "{title} सहेजें"
   },
   "home": {
-    "heading": "नीतू सिंह",
-    "intro": "हिंदी लेखिका। यहाँ उनकी कविताएँ, कहानियाँ, उपन्यास और पुस्तकें एक जगह मिलेंगी — साथ में वे सभी ठिकाने जहाँ आप उन्हें पढ़ या सुन सकते हैं।"
+    "featured": {
+      "eyebrow": "विशेष रचना",
+      "region": "विशेष रचनाएँ",
+      "counter": "{current} / {total}",
+      "slideLabel": "{current} / {total}: {title}",
+      "previous": "पिछली",
+      "next": "अगली",
+      "parts": "{count} भागों में",
+      "seeParts": "सभी भाग देखें",
+      "seeMore": "पूरी जानकारी देखें"
+    },
+    "saved": {
+      "heading": "आपकी सहेजी रचनाएँ",
+      "note": "यह सूची सिर्फ़ इसी फ़ोन या कंप्यूटर के ब्राउज़र में रहती है।",
+      "viewAll": "सभी सहेजी रचनाएँ देखें ({count})",
+      "remove": "हटाएँ",
+      "removeLabel": "{title} को सूची से हटाएँ"
+    },
+    "latest": {
+      "heading": "नई रचनाएँ",
+      "subheading": "हाल में प्रकाशित कहानियाँ, कविताएँ और उपन्यास",
+      "viewAll": "सभी रचनाएँ देखें"
+    },
+    "browse": {
+      "heading": "क्या पढ़ना चाहेंगे?",
+      "subheading": "रचनाएँ उनके प्रकार से देखें",
+      "stories": "कहानियाँ",
+      "poems": "कविताएँ",
+      "novels": "उपन्यास",
+      "series": "धारावाहिक उपन्यास",
+      "audiobooks": "सुनने के लिए (ऑडियोबुक)"
+    },
+    "books": {
+      "heading": "पुस्तकें",
+      "subheading": "छपी हुई किताबें, जिन्हें आप घर मँगा सकते हैं",
+      "viewAll": "सभी पुस्तकें देखें"
+    },
+    "about": {
+      "heading": "नीतू सिंह के बारे में",
+      "more": "पूरा परिचय पढ़ें",
+      "photoAlt": "नीतू सिंह की फ़ोटो"
+    }
+  },
+  "book": {
+    "detail": "{kind}, {publisher}",
+    "contributors": "नीतू सिंह और {count} अन्य लेखक",
+    "partsCount": "{count} भाग"
   }
 }

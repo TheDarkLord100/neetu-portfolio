@@ -201,6 +201,14 @@ function buildIndex(store: Store, locale: Locale) {
       releases,
       mainRelease: main ?? null,
       partsCount: childrenByParent.get(w.id)?.length ?? 0,
+      contentKinds: [
+        ...new Set(
+          (childrenByParent.get(w.id) ?? []).flatMap((m) => {
+            const child = workById.get(m.child_id);
+            return child ? [child.kind] : [];
+          }),
+        ),
+      ],
     };
   };
 
