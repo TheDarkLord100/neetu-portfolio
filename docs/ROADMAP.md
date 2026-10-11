@@ -39,7 +39,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 
 - [x] Site shell: paper background (texture layers), header, mobile 4-tab navigation, footer, visible search
 - [x] Shared components: release "stamp" button, cloth-cover fallback, work row (contents style), save (bookmark) button
-- [ ] Home page: featured carousel (tap-only, never auto-rotates), latest works, browse-by-kind panel, books strip, about teaser
+- [x] Home page: featured carousel (tap-only, never auto-rotates), latest works, browse-by-kind panel, books strip, about teaser
 - [ ] Catalog page (रचनाएँ): list + kind chips + filter groups (format, genre, platform), active-filter chips, count, sort, empty state
 - [ ] Catalog: all filters, search, sort, page and page size kept in the URL (back button and shared links restore them)
 - [ ] Catalog: pagination with page size 10 / 25 / 50 / 100 (default 10); reset to page 1 when anything else changes; scroll to top of results on page change
