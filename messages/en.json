@@ -335,5 +335,29 @@
       "body": "Printed books and serial novels will appear here. Until then, read her works.",
       "action": "See works"
     }
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "About"
+    },
+    "photoAlt": "Photo of Neetu Singh",
+    "readWorks": "Read her works",
+    "contactCta": "Contact",
+    "journey": "Her writing journey",
+    "quoteCaption": "Neetu Singh",
+    "awards": {
+      "heading": "Major awards",
+      "more": "See more awards ({count})",
+      "noYear": "Other"
+    },
+    "platforms": {
+      "heading": "Where to read and listen"
+    },
+    "contact": {
+      "heading": "Contact",
+      "purpose": "Email for publishing, literary events or messages from readers.",
+      "social": "Social media:",
+      "emailLabel": "Send an email: {email}"
+    }
   }
 }

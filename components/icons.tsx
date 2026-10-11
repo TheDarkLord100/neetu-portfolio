@@ -95,3 +95,20 @@ export function OpenBookIcon(props: IconProps) {
     </Svg>
   );
 }
+
+export function ArrowUpRightIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M7 17 17 7M9 7h8v8" />
+    </Svg>
+  );
+}
+
+export function MailIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="1.5" />
+      <path d="m4 7 8 6 8-6" />
+    </Svg>
+  );
+}
