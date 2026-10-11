@@ -210,5 +210,58 @@
       "body": "No work matches the selected filters. Remove a filter above, or clear them all at once.",
       "savedBody": "You haven't saved any work yet. Press \"Save\" on any work and it will appear here and on the home page."
     }
+  },
+  "workPage": {
+    "breadcrumb": "Breadcrumb",
+    "kindPlural": {
+      "story": "Stories",
+      "poem": "Poems",
+      "novel": "Novels"
+    },
+    "alsoPrinted": "also as a printed book",
+    "published": "Published: {date}",
+    "genresLabel": "Genres",
+    "seriesNote": "This is part {position} of {series}. The series has {total} parts.",
+    "releasesHeading": {
+      "read": "Where to read",
+      "listen": "Where to listen",
+      "buy": "Where to buy",
+      "read+listen": "Where to read or listen",
+      "read+buy": "Where to read or buy",
+      "listen+buy": "Where to listen or buy",
+      "read+listen+buy": "Where to read, listen or buy"
+    },
+    "share": {
+      "label": "Share",
+      "whatsapp": "Send on WhatsApp",
+      "whatsappShort": "WhatsApp",
+      "whatsappText": "{title}, a work by Neetu Singh: {url}",
+      "copy": "Copy link",
+      "copied": "Link copied"
+    },
+    "about": {
+      "story": "About the story",
+      "poem": "About the poem",
+      "novel": "About the novel",
+      "part": "About this part"
+    },
+    "excerpt": {
+      "heading": "An excerpt",
+      "caption": "To read the whole work, use the buttons above."
+    },
+    "parts": {
+      "heading": "Parts of {series}",
+      "part": "Part {position}",
+      "current": "You are here",
+      "next": "Read the next part"
+    },
+    "appearsIn": {
+      "heading": "Also in"
+    },
+    "similar": {
+      "heading": "More like this",
+      "viewAll": "See all works"
+    },
+    "partCover": "Part {position}"
   }
 }

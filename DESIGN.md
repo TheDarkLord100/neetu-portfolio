@@ -421,7 +421,7 @@ Data, URL state and search behaviour: see `docs/Data.md` ("Catalog query rules")
 2. **Top:** desktop, big cover left and header block right; phone, cover centred, then the header block.
    - Kind line with a cloth swatch ("कहानी", "उपन्यास, धारावाहिक का भाग 1", "कहानी, छपी किताब के रूप में भी").
    - Title (`display`).
-   - "पहली बार प्रकाशित: <month year>" (`meta`).
+   - "प्रकाशित: <month year>" (`meta`).
    - Genre chips.
    - **Series-part note** (slim panel strip), for parts only: "यह <series link> का भाग 1 है। पूरे धारावाहिक में 2 भाग हैं।"
    - **Releases:** heading (`ui-strong`) adapts: "कहाँ पढ़ें" / "कहाँ पढ़ें या सुनें" / "कहाँ पढ़ें, सुनें या खरीदें". Stamps with detail lines; a parent series' audiobook is inherited.
