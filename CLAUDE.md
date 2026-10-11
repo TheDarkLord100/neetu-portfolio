@@ -56,7 +56,7 @@ I make decisions and review results; I don't read most of the code. So:
 
 - Mobile first. Design for a 390px-wide phone, then scale up.
 - Readers include older, non-technical people: body text at least 17px, line-height 1.7 or more for Devanagari, tap targets at least 44px, high contrast, no hover-only interactions, no hidden gestures.
-- Navigation has at most 4 top-level sections, and search stays visible.
+- Navigation has at most 4 top-level sections. Search lives on the रचनाएँ (`/works`) page only, not in the header.
 - Fonts via `next/font` with the Devanagari subset.
 - Keep pages light: optimised images through `next/image`, no heavy animation libraries.
 - Nothing moves on its own: no auto-rotating carousels or auto-advancing content. The featured carousel changes only when the reader taps.

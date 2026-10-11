@@ -203,10 +203,7 @@ States are listed for each component. "Phone" means below 1024px.
 - **Nav:** मुखपृष्ठ · रचनाएँ · पुस्तकें · परिचय (Mukta 500–600, `ui`). Current section: ink text plus a 3px turmeric underline under the item, and `aria-current="page"`. Work pages count as रचनाएँ, book pages as पुस्तकें.
   - Desktop: inline, right of the name.
   - Phone: a visible 4-tab row under the name (equal widths, 48px tall). No hamburger.
-- **Search** (all pages except the catalog, which has its own):
-  - Desktop: field (~260px, 50px tall, `--paper-raised`, `--line-strong` border, placeholder "कहानी या कविता का नाम") joined to a walnut button "खोजें" with a magnifier icon. Label "रचना खोजें" is visually hidden.
-  - Phone: visible label "रचना खोजें" (`meta`, 600) above a full-width field + "खोजें" button, 52px tall.
-  - Submits to `/works?q=…` (catalog).
+- **No search in the header** (decided after the mockups, which showed one). Search lives on the रचनाएँ page (§6.13, §7.2), one tap away in the nav.
 - A full-width hairline under the header.
 
 ### 6.2 Footer (same on every page)
@@ -373,7 +370,7 @@ Not in the mockups; built only from existing tokens.
 
 - Segmented pill: each language in its own script ("हिंदी" | "English"), `ui` 600, 44px tall, `--paper-raised` with a 1px `--line-strong` border, radius pill. Current language: walnut fill, on-walnut text, `aria-current`.
 - Plain links to the same page in the other language (`hrefLang`, `lang` set on each).
-- Placement: header, far right. Desktop: after the search. Phone: top right, beside the name.
+- Placement: header, far right. Desktop: after the nav. Phone: top right, beside the name.
 - Shown only when more than one language is enabled (`lib/i18n/config.ts`); hidden while the site is Hindi-only.
 
 ---
@@ -402,7 +399,6 @@ Addresses: `/` home, `/works` catalog, `/work/<slug>` work, `/books` books list,
 
 ### 7.2 रचनाएँ (catalog) — `02-catalog`
 
-Header **without** search (the page has its own).
 
 1. Title "रचनाएँ" (`display`) + intro line (`body`, ink-soft).
 2. Search field + voice button (§6.13), and the voice status line when active.

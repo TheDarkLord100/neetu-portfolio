@@ -10,7 +10,6 @@ export const routes = {
   books: "/books",
   book: (slug: string) => `/book/${slug}`,
   about: "/about",
-  search: (q: string) => `/works?q=${encodeURIComponent(q)}`,
 } as const;
 
 export type Section = "home" | "works" | "books" | "about";

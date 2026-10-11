@@ -14,11 +14,6 @@
     "books": "Books",
     "about": "About"
   },
-  "search": {
-    "label": "Search works",
-    "placeholder": "Title of a story or poem",
-    "submit": "Search"
-  },
   "a11y": {
     "skipToContent": "Skip to main content",
     "newWindow": "(opens in a new window)"

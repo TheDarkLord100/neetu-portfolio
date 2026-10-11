@@ -43,7 +43,7 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [ ] Catalog page (रचनाएँ): list + kind chips + filter groups (format, genre, platform), active-filter chips, count, sort, empty state
 - [ ] Catalog: all filters, search, sort, page and page size kept in the URL (back button and shared links restore them)
 - [ ] Catalog: pagination with page size 10 / 25 / 50 / 100 (default 10); reset to page 1 when anything else changes; scroll to top of results on page change
-- [ ] Search with voice input (`hi-IN`, browser Speech Recognition, progressive enhancement with Hindi fallback messages); header search on other pages leads to the catalog with the query
+- [ ] Search with voice input (`hi-IN`, browser Speech Recognition, progressive enhancement with Hindi fallback messages), on the रचनाएँ page only (no header search)
 - [ ] Favourites in local storage: save button on works, "सिर्फ़ सहेजी हुई" filter, "आपकी सहेजी रचनाएँ" section on the home page (hidden when empty)
 - [ ] Work page: poem / story / novel, with releases and "appears in"
 - [ ] Series page: parts in order, plus series-level releases
