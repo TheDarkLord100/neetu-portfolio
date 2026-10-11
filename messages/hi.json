@@ -29,6 +29,56 @@
     "platformProfile": "{platform} पर नीतू सिंह",
     "copyright": "© {year} नीतू सिंह। सभी रचनाओं के अधिकार लेखिका के पास सुरक्षित हैं।"
   },
+  "language": {
+    "label": "भाषा",
+    "hi": "हिंदी",
+    "en": "English"
+  },
+  "kinds": {
+    "story": "कहानी",
+    "poem": "कविता",
+    "novel": "उपन्यास",
+    "series": "धारावाहिक उपन्यास",
+    "collection": "संग्रह",
+    "anthology": "साझा संकलन"
+  },
+  "release": {
+    "verbs": {
+      "read": "पढ़ें",
+      "listen": "सुनें",
+      "buy": "खरीदें"
+    },
+    "detail": {
+      "online": "{platform} पर ऑनलाइन",
+      "onlineChapters": "{platform} पर, {count} अध्याय",
+      "audiobook": "ऑडियो कहानी, वाचक: {narrator}",
+      "audiobookPlain": "ऑडियोबुक",
+      "seriesAudiobook": "पूरे धारावाहिक का ऑडियोबुक, वाचक: {narrator}",
+      "seriesAudiobookPlain": "पूरे धारावाहिक का ऑडियोबुक",
+      "print": "छपी किताब, {publisher}",
+      "printPlain": "छपी किताब",
+      "ebook": "{platform} ई-बुक"
+    },
+    "accessibleName": "{verb} — {platform}"
+  },
+  "work": {
+    "genres": "विषय: {genres}",
+    "chapters": "{count} अध्याय",
+    "seriesPart": "धारावाहिक का भाग {position}",
+    "appearsIn": "इसमें भी शामिल:",
+    "inSeries": "धारावाहिक उपन्यास:",
+    "alsoAsBook": "किताब के रूप में भी:",
+    "alsoAsBookLink": "पुस्तकें देखें",
+    "listSeparator": ", "
+  },
+  "cover": {
+    "editor": "संपादक: {name}"
+  },
+  "save": {
+    "save": "सहेजें",
+    "saved": "सहेजी गई",
+    "accessibleName": "{title} सहेजें"
+  },
   "home": {
     "heading": "नीतू सिंह",
     "intro": "हिंदी लेखिका। यहाँ उनकी कविताएँ, कहानियाँ, उपन्यास और पुस्तकें एक जगह मिलेंगी — साथ में वे सभी ठिकाने जहाँ आप उन्हें पढ़ या सुन सकते हैं।"

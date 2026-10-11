@@ -1,4 +1,4 @@
-import { defaultLocale } from "@/lib/i18n/config";
+import { defaultLocale, locales, type Locale } from "@/lib/i18n/config";
 
 // Page addresses: English paths, Hinglish slugs (CLAUDE.md). Build every
 // internal link with these so a rename happens in one place.
@@ -34,4 +34,13 @@ export function sectionOf(rawPathname: string): Section | null {
   if (pathname === "/books" || pathname.startsWith("/book/")) return "books";
   if (pathname === "/about") return "about";
   return null;
+}
+
+/** The same page in another language: Hindi has no prefix, others get "/<locale>". */
+export function localizedPath(pathname: string, locale: Locale): string {
+  let path = publicPath(pathname);
+  const current = locales.find((l) => l !== defaultLocale && (path === `/${l}` || path.startsWith(`/${l}/`)));
+  if (current) path = path.slice(current.length + 1) || "/";
+  if (locale === defaultLocale) return path;
+  return path === "/" ? `/${locale}` : `/${locale}${path}`;
 }

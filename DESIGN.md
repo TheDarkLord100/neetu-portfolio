@@ -367,6 +367,15 @@ Panel, centred: open-book line icon (~64px, ink at 70%), heading "कोई र�
 - Markers are decorative (`aria-hidden`), not buttons; the buttons are the controls *(chosen; markers are too small to tap)*.
 - Tap-only, never auto-rotates. The slide region has `aria-live="polite"` and `aria-roledescription="carousel"`; buttons have `aria-controls`. Wraps from last to first.
 
+### 6.21 Language switch (added after the mockups)
+
+Not in the mockups; built only from existing tokens.
+
+- Segmented pill: each language in its own script ("हिंदी" | "English"), `ui` 600, 44px tall, `--paper-raised` with a 1px `--line-strong` border, radius pill. Current language: walnut fill, on-walnut text, `aria-current`.
+- Plain links to the same page in the other language (`hrefLang`, `lang` set on each).
+- Placement: header, far right. Desktop: after the search. Phone: top right, beside the name.
+- Shown only when more than one language is enabled (`lib/i18n/config.ts`); hidden while the site is Hindi-only.
+
 ---
 
 ## 7. Pages

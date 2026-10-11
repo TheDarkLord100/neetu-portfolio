@@ -29,6 +29,56 @@
     "platformProfile": "Neetu Singh on {platform}",
     "copyright": "© {year} Neetu Singh. All rights to the works reserved by the author."
   },
+  "language": {
+    "label": "Language",
+    "hi": "हिंदी",
+    "en": "English"
+  },
+  "kinds": {
+    "story": "Story",
+    "poem": "Poem",
+    "novel": "Novel",
+    "series": "Serial novel",
+    "collection": "Collection",
+    "anthology": "Anthology"
+  },
+  "release": {
+    "verbs": {
+      "read": "Read",
+      "listen": "Listen",
+      "buy": "Buy"
+    },
+    "detail": {
+      "online": "Online on {platform}",
+      "onlineChapters": "On {platform}, {count} chapters",
+      "audiobook": "Audio story, narrated by {narrator}",
+      "audiobookPlain": "Audiobook",
+      "seriesAudiobook": "Audiobook of the whole series, narrated by {narrator}",
+      "seriesAudiobookPlain": "Audiobook of the whole series",
+      "print": "Printed book, {publisher}",
+      "printPlain": "Printed book",
+      "ebook": "{platform} ebook"
+    },
+    "accessibleName": "{verb} — {platform}"
+  },
+  "work": {
+    "genres": "Genre: {genres}",
+    "chapters": "{count} chapters",
+    "seriesPart": "part {position} of a series",
+    "appearsIn": "Also in:",
+    "inSeries": "Serial novel:",
+    "alsoAsBook": "Also as a book:",
+    "alsoAsBookLink": "see books",
+    "listSeparator": ", "
+  },
+  "cover": {
+    "editor": "Editor: {name}"
+  },
+  "save": {
+    "save": "Save",
+    "saved": "Saved",
+    "accessibleName": "Save {title}"
+  },
   "home": {
     "heading": "Neetu Singh",
     "intro": "Hindi writer. Her poems, stories, novels and books in one place — along with everywhere you can read or listen to them."
