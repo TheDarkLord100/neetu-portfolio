@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef } from "react";
 import { CloseIcon, MicIcon, SearchIcon } from "@/components/icons";
 import type { Messages } from "@/lib/i18n/messages";
 import { useVoiceSearch } from "@/lib/voice";
+import { VoiceDialog } from "./voice-dialog";
 
 type Props = {
   value: string;
@@ -18,19 +20,13 @@ const control = "h-14 rounded-control border border-line-strong text-ui";
 
 /**
  * Catalog search (DESIGN.md §6.13): labelled field with magnifier and clear
- * button, plus the बोलें / रोकें voice button and its status line.
+ * button, plus the बोलें voice button. Listening happens in a window
+ * (VoiceDialog); the line under the field only says when the browser can't listen.
  */
 export function SearchBar({ value, onChange, action, voiceLang = "hi-IN", messages: m }: Props) {
   const voice = useVoiceSearch({ lang: voiceLang, onText: onChange });
-  const listening = voice.status === "listening";
-  const message =
-    voice.status === "unsupported"
-      ? m.voice.unsupported
-      : voice.status === "denied"
-        ? m.voice.denied
-        : voice.status === "noMatch"
-          ? m.voice.noMatch
-          : null;
+  const voiceButton = useRef<HTMLButtonElement>(null);
+  const active = voice.status === "starting" || voice.status === "listening";
 
   return (
     <form role="search" action={action} method="get" onSubmit={(e) => e.preventDefault()}>
@@ -67,17 +63,18 @@ export function SearchBar({ value, onChange, action, voiceLang = "hi-IN", messag
         </div>
         <button
           type="button"
-          onClick={listening ? voice.stop : voice.start}
-          aria-label={listening ? m.voice.stopLabel : m.voice.startLabel}
-          aria-pressed={listening}
+          ref={voiceButton}
+          onClick={voice.start}
+          aria-label={m.voice.startLabel}
+          aria-haspopup="dialog"
           className={[
             control,
             "inline-flex shrink-0 items-center gap-2 px-4 font-semibold transition-colors",
-            listening ? "border-walnut bg-walnut text-on-walnut" : "bg-paper-raised text-ink hover:bg-label-paper",
+            active ? "border-walnut bg-walnut text-on-walnut" : "bg-paper-raised text-ink hover:bg-label-paper",
           ].join(" ")}
         >
           <MicIcon size={18} />
-          <span aria-hidden="true">{listening ? m.voice.stop : m.voice.start}</span>
+          <span aria-hidden="true">{m.voice.start}</span>
         </button>
         {/* Readers without JavaScript submit the form. */}
         <noscript>
@@ -87,14 +84,17 @@ export function SearchBar({ value, onChange, action, voiceLang = "hi-IN", messag
         </noscript>
       </div>
       <p aria-live="polite" className="mt-2 min-h-0 text-meta text-ink-soft empty:hidden">
-        {listening && (
-          <span className="flex items-center gap-2">
-            <span aria-hidden="true" className="size-2 rounded-full bg-turmeric" />
-            {m.voice.listening}
-          </span>
-        )}
-        {!listening && message}
+        {voice.status === "unsupported" && m.voice.unsupported}
       </p>
+      <VoiceDialog
+        status={voice.status}
+        transcript={voice.transcript}
+        onStop={voice.stop}
+        onRetry={voice.start}
+        onClose={voice.cancel}
+        returnFocusTo={voiceButton}
+        messages={m.voice}
+      />
     </form>
   );
 }

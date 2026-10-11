@@ -150,6 +150,18 @@
     512px 512px;
 }
 
+/* Voice listening window (DESIGN.md §6.22): soft ring around the mic. */
+@keyframes voice-pulse {
+  from {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
 @layer base {
   html {
     background-color: var(--ink); /* matches the footer when over-scrolling */

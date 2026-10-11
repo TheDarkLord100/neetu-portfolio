@@ -321,7 +321,7 @@ Rows are separated by hairlines, with 24px vertical padding.
 ### 6.13 Form controls (catalog)
 
 - **Search field:** visible label "नाम या किसी शब्द से खोजें" (`ui-strong`), 56px tall, `--paper-raised`, 1px `--line-strong`, radius 6px, magnifier icon inside left, placeholder "जैसे: बारिश की रात". Clear button "✕" (44px, `aria-label="खोज साफ़ करें"`) inside right when filled.
-- **Voice button "बोलें":** outline, mic icon + text, 56px, beside the field. Listening: walnut fill, text "रोकें". A status line below the field shows a turmeric dot + "सुन रहे हैं… रचना का नाम बोलिए" (`aria-live="polite"`). The button stays visible even where speech recognition is unsupported; tapping it then shows the unsupported message (§8).
+- **Voice button "बोलें":** outline, mic icon + text, 56px, beside the field, `aria-haspopup="dialog"`. Tapping it opens the voice listening window (§6.22); the button shows a walnut fill while the window is listening. The button stays visible even where speech recognition is unsupported; tapping it then shows the unsupported message (§8) in a status line below the field (`aria-live="polite"`), with no window.
 - **Checkbox row:** 46–48px tall, 22px box with a `--line-strong` border; checked = walnut fill with a white tick. Label `ui`, count right-aligned in `meta` ink-soft.
 - **Select** ("एक पृष्ठ पर" 10/25/50/100, "क्रम" नई पहले / पुरानी पहले / नाम से): native `<select>`, 48px, paper-raised, `--line-strong` border, radius 6px, visible label beside it.
 
@@ -373,6 +373,19 @@ Not in the mockups; built only from existing tokens.
 - Placement: header, far right. Desktop: after the nav. Phone: top right, beside the name.
 - Shown only when more than one language is enabled (`lib/i18n/config.ts`); hidden while the site is Hindi-only.
 
+### 6.22 Voice listening window (added after the mockups)
+
+Not in the mockups; built from existing tokens. Makes it obvious when the microphone is on.
+
+- Native modal `<dialog>`, `--paper-raised`, 1px `--line-strong` border, no shadow. Backdrop: `--ink` at 55%. Phone: full-width sheet at the bottom, top corners radius-panel. Tablet and up: centred, max 480px, radius-panel. Content centred: 24px top, 20px sides on phone (32px from tablet).
+- ✕ close button top right (44px, `aria-label="बंद करें"`). Esc and a tap on the backdrop also close it; closing stops the microphone. Focus moves to the main button and returns to "बोलें" on close.
+- Mic badge (80px circle, 34px icon) and an `h3` heading, then a `body` line, per step:
+  - **Starting** (waiting for the microphone and the browser's permission prompt): dashed turmeric ring on label-paper. "माइक चालू हो रहा है…" / "अगर ब्राउज़र माइक की अनुमति माँगे, तो "अनुमति दें" (Allow) चुनें।" Button: outline "रद्द करें".
+  - **Listening** (only once the microphone is actually on): turmeric fill, on-walnut icon, with a soft turmeric ring pulsing outward (1.6s, only under `prefers-reduced-motion: no-preference`; still otherwise). "सुन रहे हैं…" / "रचना का नाम बोलिए". Words heard so far appear in a box below: "आपने कहा" (`meta`, ink-soft) over the text (heading font, `lead`, `lang="hi"`). Button: primary "रोकें".
+  - **Error** (permission denied / not understood): label-paper circle with a `--line-strong` border, ink-soft icon. "बोलकर खोज नहीं हो पाई" + the §8 message. Buttons: primary "फिर से बोलें" (mic icon) and outline "बंद करें".
+  - **Done:** the window closes by itself; the words are already in the search field and the results are filtered.
+- Heading and message sit in an `aria-live="polite"` region. Buttons are full width, 52px, stacked.
+
 ---
 
 ## 7. Pages
@@ -401,7 +414,7 @@ Addresses: `/` home, `/works` catalog, `/work/<slug>` work, `/books` books list,
 
 
 1. Title "रचनाएँ" (`display`) + intro line (`body`, ink-soft).
-2. Search field + voice button (§6.13), and the voice status line when active.
+2. Search field + voice button (§6.13); speaking opens the voice listening window (§6.22).
 3. Kind chips: सभी / कहानी / कविता / उपन्यास / धारावाहिक. A series row opens its series page, shows "धारावाहिक उपन्यास, 2 भाग", and its pills are पढ़ें (भाग 1) and the series' own releases; its parts stay listed individually.
 4. Filters:
    - Desktop: **sidebar** (~310px panel, always open, left), groups separated by hairlines: आपकी सूची (सिर्फ़ सहेजी हुई), कैसे उपलब्ध है (पढ़ने के लिए / सुनने के लिए (ऑडियोबुक) / छपी किताब), विषय, कहाँ मिलेगी. "सभी फ़िल्टर हटाएँ" text button when any filter is active.
@@ -482,7 +495,7 @@ Lists every series, collection and anthology, plus single works with a `print` r
 |---|---|
 | Carousel | Tap-only, wraps around, never auto-rotates, `aria-live="polite"`. |
 | Saved list | `localStorage` (key and rules in CLAUDE.md). Wherever it's shown, the UI says it stays on this device. |
-| Voice search | `hi-IN` Speech Recognition, interim results fill the field live. Messages (`aria-live`): unsupported "इस ब्राउज़र में बोलकर खोजने की सुविधा नहीं है। कृपया नाम टाइप करें।" · permission denied "माइक की अनुमति नहीं मिली। ब्राउज़र में माइक की अनुमति दें, या नाम टाइप करें।" · not understood "आवाज़ साफ़ समझ नहीं आई। फिर से "बोलें" दबाकर कोशिश करें।" |
+| Voice search | `hi-IN` Speech Recognition, interim results fill the field live. Messages (`aria-live`): unsupported "इस ब्राउज़र में बोलकर खोजने की सुविधा नहीं है। कृपया नाम टाइप करें।" · permission denied "माइक की अनुमति नहीं मिली। ब्राउज़र में माइक की अनुमति दें, या नाम टाइप करें।" · not understood "आवाज़ साफ़ समझ नहीं आई। "फिर से बोलें" दबाकर कोशिश करें।" Permission denied and not understood are shown in the listening window (§6.22); unsupported in the line under the field. |
 | Copy link | Label → "लिंक कॉपी हो गया" for 2.5s, announced via `aria-live`. |
 | Filters | Instant (no "apply" step) on desktop; on phone the panel's "n रचनाएँ दिखाएँ" button closes it (results already updated). |
 | Page change | Scroll to the top of the results. |

@@ -6,7 +6,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 // progressive enhancement. Never blocks typing. In Chrome the audio is sent
 // to Google's speech service (mentioned on the privacy page).
 
-export type VoiceStatus = "idle" | "listening" | "unsupported" | "denied" | "noMatch";
+// "starting": recognition requested, waiting for the microphone (and the
+// browser's permission prompt). "listening": the microphone is actually on.
+export type VoiceStatus = "idle" | "starting" | "listening" | "unsupported" | "denied" | "noMatch";
 
 // Minimal typing for the (still prefixed in Chrome) Web Speech API.
 type Recognition = {
@@ -17,6 +19,7 @@ type Recognition = {
   start: () => void;
   stop: () => void;
   abort: () => void;
+  onaudiostart: (() => void) | null;
   onresult: ((e: { resultIndex: number; results: ArrayLike<ArrayLike<{ transcript: string }> & { isFinal: boolean }> }) => void) | null;
   onerror: ((e: { error: string }) => void) | null;
   onend: (() => void) | null;
@@ -35,6 +38,7 @@ function getRecognition(): RecognitionCtor | null {
  */
 export function useVoiceSearch({ lang, onText }: { lang: string; onText: (text: string) => void }) {
   const [status, setStatus] = useState<VoiceStatus>("idle");
+  const [transcript, setTranscript] = useState("");
   const recognition = useRef<Recognition | null>(null);
   const heardSomething = useRef(false);
   const onTextRef = useRef(onText);
@@ -59,13 +63,17 @@ export function useVoiceSearch({ lang, onText }: { lang: string; onText: (text: 
     r.continuous = false;
     r.maxAlternatives = 1;
     heardSomething.current = false;
+    setTranscript("");
 
+    r.onaudiostart = () => setStatus((s) => (s === "starting" ? "listening" : s));
     r.onresult = (e) => {
       let text = "";
       for (let i = 0; i < e.results.length; i++) text += e.results[i][0].transcript;
       text = text.trim();
       if (text) {
         heardSomething.current = true;
+        setStatus((s) => (s === "starting" ? "listening" : s));
+        setTranscript(text);
         onTextRef.current(text);
       }
     };
@@ -76,11 +84,11 @@ export function useVoiceSearch({ lang, onText }: { lang: string; onText: (text: 
     };
     r.onend = () => {
       recognition.current = null;
-      setStatus((s) => (s === "listening" ? (heardSomething.current ? "idle" : "noMatch") : s));
+      setStatus((s) => (s === "listening" || s === "starting" ? (heardSomething.current ? "idle" : "noMatch") : s));
     };
 
     recognition.current = r;
-    setStatus("listening");
+    setStatus("starting");
     try {
       r.start();
     } catch {
@@ -91,5 +99,17 @@ export function useVoiceSearch({ lang, onText }: { lang: string; onText: (text: 
   // Stop listening when the component goes away.
   useEffect(() => () => recognition.current?.abort(), []);
 
-  return { status, start, stop, reset: () => setStatus("idle") };
+  // Stop without keeping the "not understood" result (closing the window).
+  const cancel = useCallback(() => {
+    const r = recognition.current;
+    recognition.current = null;
+    if (r) {
+      r.onend = null;
+      r.onerror = null;
+      r.abort();
+    }
+    setStatus("idle");
+  }, []);
+
+  return { status, transcript, start, stop, cancel, reset: () => setStatus("idle") };
 }

@@ -143,11 +143,18 @@
       "start": "Speak",
       "stop": "Stop",
       "startLabel": "Search by voice",
-      "stopLabel": "Stop listening",
-      "listening": "Listening… say the title of a work",
+      "startingHeading": "Turning on the microphone…",
+      "startingHint": "If your browser asks for microphone permission, choose \"Allow\".",
+      "listeningHeading": "Listening…",
+      "listeningHint": "Say the title of a work",
+      "heard": "You said",
+      "errorHeading": "Voice search didn’t work",
+      "retry": "Speak again",
+      "cancel": "Cancel",
+      "close": "Close",
       "unsupported": "Voice search isn't available in this browser. Please type the title.",
       "denied": "Microphone permission was not given. Allow the microphone in your browser, or type the title.",
-      "noMatch": "Couldn't understand clearly. Press \"Speak\" and try again."
+      "noMatch": "Couldn’t understand clearly. Press \"Speak again\" to try once more."
     },
     "kinds": {
       "label": "Type of work",
