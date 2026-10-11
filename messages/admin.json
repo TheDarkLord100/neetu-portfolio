@@ -210,7 +210,8 @@
     "deleteConfirm": "Type the title to confirm: {title}",
     "deleteButton": "Delete permanently",
     "kindInParent": "This work is part of a series or book that doesn't allow this kind.",
-    "leaveWarning": "You have unsaved changes. Leave without saving?"
+    "leaveWarning": "You have unsaved changes. Leave without saving?",
+    "saveAndPublish": "Save and publish"
   },
   "releases": {
     "title": "Where it's available",
@@ -291,7 +292,8 @@
     "addGenre": "Add genre",
     "newGenre": "New genre",
     "genreUsed": "Used by {count} works",
-    "genreDeleteConfirm": "Delete the genre {name}? {count} works will lose it."
+    "genreDeleteConfirm": "Delete the genre {name}? {count} works will lose it.",
+    "genreExists": "A genre with this name already exists. Tick it in the list above."
   },
   "profile": {
     "title": "Author profile",

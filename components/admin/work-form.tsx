@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState, useTransition } from "react";
+import { saveGenre } from "@/app/admin/platforms/actions";
 import { deleteWork, saveWork } from "@/app/admin/works/actions";
+import type { Tables } from "@/lib/database.types";
 import type { Store } from "@/lib/data/store";
 import type { WorkKind } from "@/lib/data/types";
 import type { AdminMessages } from "@/lib/admin/messages";
@@ -111,10 +113,11 @@ export function WorkForm({ store, workId, messages }: Props) {
     }
   };
 
-  function submit() {
+  /** Save as it is, or ("Save and publish") with the status switched to Published. */
+  function submit(publish = false) {
     startTransition(async () => {
       setStatus({ kind: "idle" });
-      const result = await saveWork(values);
+      const result = await saveWork(publish ? { ...values, status: "published" } : values);
       if (result.ok) {
         setErrors({});
         // Reload with fresh data (new ids); the form remounts and shows "Saved".
@@ -134,6 +137,10 @@ export function WorkForm({ store, workId, messages }: Props) {
       requestAnimationFrame(() => document.querySelector<HTMLElement>("[aria-invalid=true], [data-error=true]")?.focus());
     });
   }
+
+  // Genres can be added from this form, so keep the list locally.
+  const [genres, setGenres] = useState(store.genres);
+  const previewStore = useMemo(() => ({ ...store, genres }), [store, genres]);
 
   const kindOptions = ALL_KINDS.filter((k) => !(values.memberIds.length > 0 && !isParentKind(k)));
   const featuredCount = values.featuredContributors.filter((s) => s.trim()).length;
@@ -326,13 +333,13 @@ export function WorkForm({ store, workId, messages }: Props) {
           </Section>
 
           <Section title={m.genres} id="genres">
-            {store.genres.length === 0 ? (
+            {genres.length === 0 ? (
               <p className="text-ui text-ink-soft">{m.noGenres}</p>
             ) : (
               <fieldset>
                 <legend className="sr-only">{m.genres}</legend>
                 <div className="grid gap-x-6 tab:grid-cols-2 desk:grid-cols-3">
-                  {store.genres.map((g) => (
+                  {genres.map((g) => (
                     <Checkbox
                       key={g.id}
                       label={
@@ -350,6 +357,13 @@ export function WorkForm({ store, workId, messages }: Props) {
                 </div>
               </fieldset>
             )}
+            <NewGenre
+              messages={messages}
+              onCreated={(genre) => {
+                setGenres((list) => [...list, genre].sort((a, b) => a.name_hi.localeCompare(b.name_hi, "hi")));
+                set("genreIds", [...values.genreIds, genre.id]);
+              }}
+            />
           </Section>
 
           {values.kind === "anthology" && (
@@ -442,7 +456,7 @@ export function WorkForm({ store, workId, messages }: Props) {
         </div>
 
         <aside className="desk:sticky desk:top-4">
-          <WorkPreview values={values} store={store} messages={m} />
+          <WorkPreview values={values} store={previewStore} messages={m} />
         </aside>
       </div>
 
@@ -450,13 +464,26 @@ export function WorkForm({ store, workId, messages }: Props) {
       <div className="fixed inset-x-0 bottom-0 z-20 border-t border-line-strong bg-paper-raised">
         <div className="mx-auto flex w-full max-w-[75rem] flex-col gap-2 px-4 py-3 tab:flex-row tab:items-center tab:justify-between tab:px-6 desk:px-8">
           <SaveStatus status={dirty && status.kind === "idle" ? { kind: "error", message: messages.common.unsaved } : status} />
-          <button
-            type="submit"
-            disabled={pending}
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-control bg-walnut px-8 text-ui font-semibold text-on-walnut hover:bg-walnut-dark disabled:opacity-45 tab:w-auto"
-          >
-            {pending ? messages.common.saving : workId ? m.save : m.create}
-          </button>
+          <div className="flex flex-col gap-2 tab:flex-row-reverse">
+            <button
+              type="submit"
+              disabled={pending}
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-control bg-walnut px-8 text-ui font-semibold text-on-walnut hover:bg-walnut-dark disabled:opacity-45 tab:w-auto"
+            >
+              {pending ? messages.common.saving : workId ? m.save : m.create}
+            </button>
+            {/* Only while it's a draft: one step to save and make it visible. */}
+            {values.status === "draft" && (
+              <button
+                type="button"
+                disabled={pending}
+                onClick={() => submit(true)}
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-control border border-walnut bg-paper-raised px-6 text-ui font-semibold text-walnut hover:bg-label-paper disabled:opacity-45 tab:w-auto"
+              >
+                {m.saveAndPublish}
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </form>
@@ -499,5 +526,81 @@ function DeleteWork({ id, title, messages }: { id: string; title: string; messag
         </p>
       )}
     </section>
+  );
+}
+
+/** "+ New genre" inside the work form: creates the genre and ticks it. */
+function NewGenre({ messages, onCreated }: { messages: AdminMessages; onCreated: (genre: Tables<"genres">) => void }) {
+  const m = messages.platforms;
+  const [open, setOpen] = useState(false);
+  const [nameHi, setNameHi] = useState("");
+  const [nameEn, setNameEn] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [pending, startTransition] = useTransition();
+
+  if (!open) {
+    return (
+      <Button className="mt-4 w-full tab:w-auto" onClick={() => setOpen(true)}>
+        + {m.newGenre}
+      </Button>
+    );
+  }
+
+  // Slug from the English name if given (e.g. "family"), otherwise from the Hindi.
+  const slug = nameEn.trim()
+    ? nameEn.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
+    : slugify(nameHi);
+
+  const add = () =>
+    startTransition(async () => {
+      setError(null);
+      const result = await saveGenre({ id: null, nameHi, nameEn, slug });
+      if (result.ok && result.id) {
+        onCreated({ id: result.id, name_hi: nameHi.trim(), name_en: nameEn.trim() || null, slug, created_at: new Date().toISOString() });
+        setNameHi("");
+        setNameEn("");
+        setOpen(false);
+        return;
+      }
+      const code = !result.ok ? (result.errors?.nameHi ?? result.errors?.slug) : undefined;
+      setError(code === "slugTaken" ? m.genreExists : code ? messages.common[code] : format(messages.common.saveFailed, { reason: (!result.ok && result.message) || "" }));
+    });
+
+  // Enter adds the genre instead of submitting the whole work form.
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      add();
+    }
+  };
+
+  return (
+    <div role="group" aria-label={m.newGenre} className="mt-4 rounded-panel border border-line bg-paper p-4">
+      <div className="grid gap-4 tab:grid-cols-2">
+        <Field label={m.nameHi} error={error}>
+          {({ id, describedBy, invalid }) => (
+            <input id={id} lang="hi" autoFocus aria-describedby={describedBy} aria-invalid={invalid} value={nameHi} onChange={(e) => setNameHi(e.target.value)} onKeyDown={onKeyDown} className={inputClass} />
+          )}
+        </Field>
+        <Field label={m.nameEn} hint={messages.common.englishHint}>
+          {({ id, describedBy }) => (
+            <input id={id} aria-describedby={describedBy} value={nameEn} onChange={(e) => setNameEn(e.target.value)} onKeyDown={onKeyDown} className={inputClass} />
+          )}
+        </Field>
+      </div>
+      <div className="mt-4 flex flex-col gap-2 tab:flex-row">
+        <Button variant="primary" disabled={pending || !nameHi.trim()} onClick={add}>
+          {pending ? messages.common.saving : m.addGenre}
+        </Button>
+        <Button
+          onClick={() => {
+            setOpen(false);
+            setError(null);
+          }}
+        >
+          {messages.common.cancel}
+        </Button>
+      </div>
+    </div>
   );
 }
