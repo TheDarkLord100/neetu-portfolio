@@ -87,6 +87,7 @@ export type BookSummary = BookRef & {
   genres: Genre[];
   releases: Release[];
   /** The release shown on book cards: print for books, audiobook for series. */
+  /** The one button on book cards: buy (print, ebook) → read (a series: part 1) → listen. */
   mainRelease: Release | null;
   partsCount: number;
   /** Distinct kinds of the visible contents, e.g. ["poem"] for a poetry collection. */

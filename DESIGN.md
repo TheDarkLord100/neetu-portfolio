@@ -444,7 +444,7 @@ Lists every series, collection and anthology, plus single works with a `print` r
    1. `#neetu-ki-pustaken`: **नीतू सिंह की पुस्तकें** ("उनकी अपनी छपी किताबें"): collections and single-story books
    2. `#sajha-sankalan`: **साझा संकलन** ("दूसरे लेखकों के साथ छपी किताबें")
    3. `#dharavahik`: **धारावाहिक उपन्यास** ("कई भागों में लिखे उपन्यास")
-4. Desktop: grid `repeat(auto-fill, minmax(230px, 1fr))`, gap 44px row / 36px column. Card: 180px cover → title (`h3`, title link) → detail line (`meta`) → one stamp for the main release.
+4. Desktop: grid `repeat(auto-fill, minmax(230px, 1fr))`, gap 44px row / 36px column. Card: 180px cover → title (`h3`, title link) → detail line (`meta`) → one stamp for the main release, chosen in this order: **खरीदें** (print, then e-book) → **पढ़ें** (for a series: भाग 1's online release) → **सुनें**. A series' audiobook stays on its book page and is mentioned in the detail line ("2 भाग, पूरा ऑडियोबुक भी"). The same rule applies to book cards on the home page; in the featured carousel, a series also shows "पढ़ें" (भाग 1) before its other releases.
 5. Phone: one book per row: 96px thumbnail + title / kind (600) / detail beside it, then a full-width 54px stamp; rows separated by hairlines.
 6. The cover and title both link to the book page; the cover link is `aria-hidden` with `tabindex="-1"`.
 7. Closing note: "ऑनलाइन कहानियाँ और कविताएँ <रचनाएँ link> पेज पर हैं।"

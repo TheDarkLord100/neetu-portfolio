@@ -36,6 +36,11 @@ export function FeaturedSlide({ item, locale, messages: m, priority = false }: P
         : null;
   const kindLine = [kindLabel, kindDetail].filter(Boolean).join(m.work.listSeparator);
   const moreLabel = book?.kind === "series" ? m.home.featured.seeParts : m.home.featured.seeMore;
+  // A series with no release of its own to read gets part 1's "पढ़ें" first (DESIGN.md §7.4).
+  const slideReleases =
+    book?.mainRelease && !item.releases.some((r) => r.id === book.mainRelease!.id)
+      ? [book.mainRelease, ...item.releases]
+      : item.releases;
 
   return (
     <div className="flex flex-col items-center gap-6 desk:flex-row desk:items-start desk:gap-18">
@@ -66,7 +71,7 @@ export function FeaturedSlide({ item, locale, messages: m, priority = false }: P
         )}
 
         <ReleaseList
-          releases={item.releases}
+          releases={slideReleases}
           messages={m}
           showDetail={false}
           direction="row"

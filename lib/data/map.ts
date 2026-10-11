@@ -188,10 +188,18 @@ function buildIndex(store: Store, locale: Locale) {
 
   const bookSummary = (w: WorkRow): BookSummary => {
     const releases = releasesOf(w);
+    // Card button priority (DESIGN.md §7.4): buy (print, then ebook) → read → listen.
+    // A series reads from part 1, using that part's online release.
+    const firstPart = w.kind === "series" ? childrenByParent.get(w.id)?.[0] : undefined;
+    const firstPartRow = firstPart ? workById.get(firstPart.child_id) : undefined;
+    const firstPartRead = firstPartRow ? releasesOf(firstPartRow).find((r) => r.format === "online" && !r.inheritedFrom) : undefined;
     const main =
-      w.kind === "series"
-        ? releases.find((r) => r.format === "audiobook") ?? releases[0]
-        : releases.find((r) => r.format === "print") ?? releases.find((r) => r.format === "ebook") ?? releases[0];
+      releases.find((r) => r.format === "print") ??
+      releases.find((r) => r.format === "ebook") ??
+      releases.find((r) => r.format === "online") ??
+      firstPartRead ??
+      releases.find((r) => r.format === "audiobook") ??
+      releases[0];
     return {
       ...bookRef(w),
       synopsis: w.synopsis_hi,
