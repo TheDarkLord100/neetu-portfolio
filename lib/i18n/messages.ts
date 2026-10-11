@@ -14,7 +14,8 @@ const loaders: Record<Locale, () => Promise<Messages>> = {
 // Server Components only. Reads the current language from the [lang] route segment.
 export async function getLocale(): Promise<Locale> {
   const value = await lang();
-  if (!isEnabledLocale(value)) notFound();
+  // undefined outside the [lang] layout (the admin has its own root layout).
+  if (!value || !isEnabledLocale(value)) notFound();
   return value;
 }
 

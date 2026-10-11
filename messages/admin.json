@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Admin",
+    "titleTemplate": "%s — Admin · Neetu Singh"
+  },
+  "shell": {
+    "brand": "Neetu Singh",
+    "area": "Admin",
+    "viewSite": "View site",
+    "signOut": "Sign out",
+    "signedInAs": "Signed in as {email}",
+    "skipToContent": "Skip to main content",
+    "newWindow": "(opens in a new window)"
+  },
+  "login": {
+    "title": "Sign in",
+    "intro": "For the site's admins only.",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "errors": {
+      "missing": "Enter your email and password.",
+      "invalid": "The email or password is incorrect.",
+      "notAdmin": "This account doesn't have admin access.",
+      "tooMany": "Too many attempts. Please wait a few minutes and try again.",
+      "unknown": "Couldn't sign in right now. Please try again."
+    },
+    "forgot": "Forgot your password? Ask the site owner to reset it in Supabase.",
+    "noAccess": {
+      "title": "No admin access",
+      "body": "You're signed in as {email}, but this account isn't on the admin list.",
+      "signOut": "Sign out and use another account"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome",
+    "intro": "Choose what you'd like to update. Changes appear on the public site as soon as you save.",
+    "comingSoon": "Coming soon",
+    "sections": [
+      {
+        "key": "works",
+        "title": "Works",
+        "body": "Add and edit stories, poems, novels, series and books, with their releases."
+      },
+      {
+        "key": "platforms",
+        "title": "Platforms and genres",
+        "body": "Pratilipi, Kuku FM, Amazon and others; the genre list."
+      },
+      {
+        "key": "profile",
+        "title": "Author profile",
+        "body": "Photo, tagline, introduction, bio, quote and contact details."
+      },
+      {
+        "key": "awards",
+        "title": "Awards",
+        "body": "Add awards, choose which ones are featured, and their order."
+      }
+    ]
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This admin page doesn't exist.",
+    "back": "Back to the dashboard"
+  }
+}

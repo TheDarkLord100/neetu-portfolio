@@ -50,6 +50,7 @@ I make decisions and review results; I don't read most of the code. So:
   - Use `_hi` / `_en` columns for translatable data. English pages show `_en`, falling back to `_hi` when empty.
   - **Works are Hindi-only, always.** Titles, synopses and excerpts are never translated and never read from `_en`; on English pages they stay in Hindi and carry `lang="hi"`. Only the author profile, awards, platforms, genres and the interface have English.
   - Build internal links with `routesFor(locale)` from `lib/routes.ts` so English pages link to English pages.
+  - The admin (`/admin`) is English-only, with its own root layout; its strings live in `messages/admin.json` (DESIGN.md §10).
 - Page `<html lang="hi">`.
 - Page addresses are English (`/works`, `/work/<slug>`, `/books`, `/book/<slug>`, `/about`); slugs are transliterated Hindi in Latin script (e.g. `/work/barish-ki-raat`), never Devanagari. Build links with `lib/routes.ts`.
 - Release buttons are labelled by action, not platform: पढ़ें (read), सुनें (listen), खरीदें (buy), with the platform logo beside the label.

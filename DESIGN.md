@@ -511,3 +511,14 @@ All UI strings live in `messages/hi.json` (CLAUDE.md); this file shows them for 
 - Platform logos (currently lettered placeholder boxes, §6.6).
 
 Ideas considered but not taken for the first version are kept in `docs/v2_suggestions.md`.
+
+## 10. Admin (`/admin`)
+
+The admin is a working tool for the site's owners, not a reader-facing page. It reuses the tokens above but stays plain; detailed design isn't needed.
+
+- **English only** (`<html lang="en">`), one address (`/admin`, no language prefix), never indexed. Strings in `messages/admin.json`.
+- Used mostly on desktop, but every screen must work at 390px: forms single-column, buttons full-width on phone, tap targets ≥ 44px, body text ≥ 17px.
+- Same colours, fonts and radii. Background is flat `--paper` (no texture); panels are `--paper-raised` with a 1px `--line` border. Width: up to 1200px with 16 / 24 / 32px gutters.
+- Top bar: `--paper-raised`, hairline below. "Neetu Singh" (heading font, h3) + walnut "Admin" pill; on the right "View site ↗" (new tab), the signed-in email (desktop only) and an outline "Sign out" button.
+- Buttons as §6.5 (walnut primary, outline secondary). Form fields as §6.13 (52px, paper-raised, `--line-strong` border, visible labels above). Error message: label-paper box with a walnut border, 4px on the left, `role="alert"`.
+- Placeholder sections show a dashed "Coming soon" pill.

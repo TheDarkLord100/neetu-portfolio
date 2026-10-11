@@ -21,7 +21,7 @@ export async function createServerClient() {
           );
         } catch {
           // Called from a Server Component, where cookies are read-only.
-          // Safe to ignore as long as sessions are refreshed elsewhere (admin auth item).
+          // Safe to ignore: proxy.ts refreshes the session on every admin request.
         }
       },
     },
