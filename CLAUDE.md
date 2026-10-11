@@ -48,6 +48,7 @@ I make decisions and review results; I don't read most of the code. So:
 - Hindi is the primary language and lives at `/`. English is enabled at `/en` (interface text translated; content falls back to Hindi until `_en` fields are filled). The हिंदी | English switch is in the header.
   - No hard-coded UI strings in components. Put them in both messages files (`messages/hi.json` and `messages/en.json`).
   - Use `_hi` / `_en` columns for translatable data. English pages show `_en`, falling back to `_hi` when empty.
+  - **Works are Hindi-only, always.** Titles, synopses and excerpts are never translated and never read from `_en`; on English pages they stay in Hindi and carry `lang="hi"`. Only the author profile, awards, platforms, genres and the interface have English.
   - Build internal links with `routesFor(locale)` from `lib/routes.ts` so English pages link to English pages.
 - Page `<html lang="hi">`.
 - Page addresses are English (`/works`, `/work/<slug>`, `/books`, `/book/<slug>`, `/about`); slugs are transliterated Hindi in Latin script (e.g. `/work/barish-ki-raat`), never Devanagari. Build links with `lib/routes.ts`.
@@ -83,4 +84,4 @@ I make decisions and review results; I don't read most of the code. So:
 ## Out of scope for now
 
 - Bulk import of existing works (placeholders only)
-- English content (translating works, bio, awards); the `/en` routes themselves are live
+- English text for the bio and awards (added later in admin); the `/en` routes themselves are live

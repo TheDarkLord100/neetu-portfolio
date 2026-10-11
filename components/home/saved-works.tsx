@@ -74,6 +74,7 @@ export function SavedWorks({ index, limit, messages: m }: Props) {
             <div className="min-w-0">
               <Link
                 href={routes.work(w.slug)}
+                lang="hi"
                 className="font-heading text-[1.25rem] leading-snug text-ink underline decoration-turmeric decoration-2 underline-offset-[5px]"
               >
                 {w.title}

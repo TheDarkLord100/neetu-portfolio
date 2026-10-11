@@ -87,4 +87,4 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 
 - [ ] Bulk import (CSV in admin, or Pratilipi metadata)
 - [x] English version at `/en`: routes, header switch, translated interface (enabled early, during the home page)
-- [ ] English content: `_en` titles, synopses, bio, awards (in admin)
+- [ ] English content for the author profile (tagline, intro, bio, quote) and awards, in admin. Works are never translated.

@@ -53,13 +53,17 @@ export function FeaturedSlide({ item, locale, messages: m, priority = false }: P
 
       <div className="w-full min-w-0 desk:max-w-[42rem] desk:pt-2">
         <Eyebrow text={m.home.featured.eyebrow} className="mb-3 hidden desk:flex" />
-        <h2 className="text-display">
+        <h2 lang="hi" className="text-display">
           <Link href={href} className="hover:underline hover:decoration-turmeric hover:decoration-2 hover:underline-offset-8">
             {item.title}
           </Link>
         </h2>
         <p className="mt-3 text-meta text-ink-soft">{kindLine}</p>
-        {item.synopsis && <p className="mt-5 font-heading text-lead text-ink">{item.synopsis}</p>}
+        {item.synopsis && (
+          <p lang="hi" className="mt-5 font-heading text-lead text-ink">
+            {item.synopsis}
+          </p>
+        )}
 
         <ReleaseList
           releases={item.releases}

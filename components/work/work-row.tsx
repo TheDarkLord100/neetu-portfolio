@@ -76,7 +76,7 @@ export function WorkRow({
       {work.series && (
         <span>
           {m.work.inSeries}{" "}
-          <Link href={routes.book(work.series.series.slug)} className={plainLink}>
+          <Link href={routes.book(work.series.series.slug)} lang="hi" className={plainLink}>
             {work.series.series.title}
           </Link>
         </span>
@@ -84,7 +84,7 @@ export function WorkRow({
       {work.appearsIn.map((b) => (
         <span key={b.slug}>
           {m.work.appearsIn}{" "}
-          <Link href={routes.book(b.slug)} className={plainLink}>
+          <Link href={routes.book(b.slug)} lang="hi" className={plainLink}>
             {b.title}
           </Link>
         </span>
@@ -122,7 +122,7 @@ export function WorkRow({
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline gap-3">
           <Heading className="min-w-0">
-            <Link href={href} className={titleLink}>
+            <Link href={href} lang="hi" className={titleLink}>
               {work.title}
             </Link>
           </Heading>
@@ -142,7 +142,11 @@ export function WorkRow({
         </p>
         {genresText && <p className="text-meta text-ink-soft desk:hidden">{genresText}</p>}
 
-        {work.synopsis && <p className="mt-2 text-body text-ink">{work.synopsis}</p>}
+        {work.synopsis && (
+          <p lang="hi" className="mt-2 text-body text-ink">
+            {work.synopsis}
+          </p>
+        )}
 
         {hasContext && (
           <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-meta text-ink-soft desk:hidden">{context}</p>

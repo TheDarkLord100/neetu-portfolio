@@ -5,7 +5,7 @@ Status: updated after catalog design · 10 Oct 2026
 ## Decisions so far
 
 - **Site type:** a hub. Every work links out to where it is published (Pratilipi, Kuku FM, Amazon…). Story text is not hosted on the site.
-- **Language:** Hindi first, at `/`. English comes later at `/en`, so translatable fields get `_hi` / `_en` columns from day one, with `_en` left empty for now.
+- **Language:** Hindi first, at `/`; English interface at `/en`. **Works are Hindi-only and are never translated**: titles, synopses and excerpts show in Hindi on English pages too (marked `lang="hi"`). Only the author profile, awards, platforms and genres have English (`_en`) versions.
 - **Stack:** Next.js (App Router) + Supabase (Postgres, Auth, Storage).
 - **Admin:** an `/admin` route in the same app, behind Supabase Auth. Saving calls `revalidatePath`, so public pages stay static.
 - **Content:** placeholders for now. Bulk import (CSV or Pratilipi metadata) is deferred.
@@ -38,9 +38,9 @@ Separate **the creative piece** (`works`) from **where it was released** (`relea
 | `kind` | work_kind | |
 | `status` | work_status | default `draft` |
 | `title_hi` | text not null | |
-| `title_en` | text | |
+| `title_en` | text | **unused**: works are Hindi-only |
 | `synopsis_hi` | text | |
-| `synopsis_en` | text | |
+| `synopsis_en` | text | **unused**: works are Hindi-only |
 | `excerpt_hi` | text | optional short excerpt |
 | `cover_path` | text | Supabase Storage path |
 | `published_on` | date | first appearance, used for sorting |
@@ -176,4 +176,4 @@ Not stored in the database. The reader's saved list lives in the browser's `loca
 ## Deferred
 
 - Bulk import (CSV in admin, or a Pratilipi metadata script, checking their terms first)
-- English content and the `/en` routes
+- English text for the author profile and awards (works stay Hindi-only)

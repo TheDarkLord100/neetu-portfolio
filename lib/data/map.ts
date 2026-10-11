@@ -97,7 +97,8 @@ function buildIndex(store: Store, locale: Locale) {
   const ref = (w: WorkRow): WorkRef => ({
     slug: w.slug,
     kind: w.kind,
-    title: pick(w.title_hi, w.title_en, locale),
+    // Works are Hindi-only on every language version (CLAUDE.md): never use _en.
+    title: w.title_hi,
   });
 
   const bookRef = (w: WorkRow): BookRef => ({
@@ -175,7 +176,7 @@ function buildIndex(store: Store, locale: Locale) {
 
   const summary = (w: WorkRow): WorkSummary => ({
     ...ref(w),
-    synopsis: w.synopsis_hi === null ? null : pick(w.synopsis_hi, w.synopsis_en, locale),
+    synopsis: w.synopsis_hi,
     publishedOn: w.published_on,
     coverPath: w.cover_path,
     featured: w.featured,
@@ -193,7 +194,7 @@ function buildIndex(store: Store, locale: Locale) {
         : releases.find((r) => r.format === "print") ?? releases.find((r) => r.format === "ebook") ?? releases[0];
     return {
       ...bookRef(w),
-      synopsis: w.synopsis_hi === null ? null : pick(w.synopsis_hi, w.synopsis_en, locale),
+      synopsis: w.synopsis_hi,
       publishedOn: w.published_on,
       coverPath: w.cover_path,
       featured: w.featured,

@@ -51,7 +51,7 @@ export function BookCard({ book, locale, messages: m, showStamp = true, headingL
         </Link>
         <div className="min-w-0">
           <Heading>
-            <Link href={href} className={titleLink}>
+            <Link href={href} lang="hi" className={titleLink}>
               {book.title}
             </Link>
           </Heading>

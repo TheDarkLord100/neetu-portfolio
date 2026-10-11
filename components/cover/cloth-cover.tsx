@@ -104,6 +104,7 @@ export function ClothCover({
         {textual && (
           <>
             <span
+              lang="hi"
               className={`font-heading leading-snug ${size === "big" ? "text-[1.375rem] desk:text-[1.75rem]" : "text-[0.8125rem] desk:text-[1.125rem]"}`}
             >
               {title}
