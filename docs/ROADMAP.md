@@ -56,15 +56,15 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 ## Phase 4: Admin
 
 - [x] Supabase Auth login at `/admin`, with server-side session checks **(review yourself)**
-- [ ] Works list: search, filter by kind and status
-- [ ] Work form: fields, slug transliteration, cover upload, genres, live preview
-- [ ] Releases editor within the work form, with per-format fields
-- [ ] Members editor for series, collections and anthologies (add, reorder)
-- [ ] Platforms and genres management
-- [ ] Author profile editor
-- [ ] Awards editor: add/edit/hide, mark featured, reorder featured
-- [ ] Revalidate public pages on save (`updateTag("works")` for works, releases, members, genres, platforms; `updateTag("site")` for author profile and awards; see `lib/data/store.ts`, `lib/data/site.ts`); publish/unpublish toggle
-- [ ] Test the admin with Hindi typing (Google Indic keyboard / phonetic input)
+- [x] Works list: search, filter by kind and status
+- [x] Work form: fields, slug transliteration, cover upload, genres, live preview
+- [x] Releases editor within the work form, with per-format fields
+- [x] Members editor for series, collections and anthologies (add, reorder)
+- [x] Platforms and genres management
+- [x] Author profile editor
+- [x] Awards editor: add/edit/hide, mark featured, reorder featured
+- [x] Revalidate public pages on save (`updateTag("works")` for works, releases, members, genres, platforms; `updateTag("site")` for author profile and awards; see `lib/data/store.ts`, `lib/data/site.ts`); publish/unpublish toggle
+- [ ] **(you)** Test the admin with Hindi typing (Google Indic keyboard / phonetic input) on a real phone. Simulated phonetic typing already passes.
 
 ## Phase 5: Quality
 
