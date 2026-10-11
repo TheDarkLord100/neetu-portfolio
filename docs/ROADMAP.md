@@ -48,10 +48,10 @@ Mockups are made in claude.ai, not Claude Code. Decisions are recorded in `docs/
 - [x] Work page: poem / story / novel, with releases and "appears in"
 - [x] Series page: parts in order, plus series-level releases
 - [x] Collection and anthology pages: contents, print release, contributors
-- [ ] Books page (पुस्तकें): printed collections, anthologies and single-story books
-- [ ] About page (परिचय) from `author_profile`
-- [ ] 404 page and remaining empty states
-- [ ] Privacy note (one short page): voice search sends audio to the browser's speech service; saved list stays on the device
+- [x] Books page (पुस्तकें): printed collections, anthologies and single-story books
+- [x] About page (परिचय) from `author_profile`
+- [x] 404 page and remaining empty states
+- [x] Privacy note (one short page): voice search sends audio to the browser's speech service; saved list stays on the device
 
 ## Phase 4: Admin
 
