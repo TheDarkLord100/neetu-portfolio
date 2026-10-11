@@ -235,7 +235,7 @@ function WorkListRow({ row: r, messages }: { row: AdminWorkRow; messages: AdminM
           <span className="absolute inset-x-1.5 top-1/3 h-3 rounded-[1px] bg-label-paper/90" />
         )}
       </div>
-      <div className="min-w-0 flex-1 desk:grid desk:grid-cols-[minmax(0,1fr)_9rem_8rem_9rem] desk:items-start desk:gap-4">
+      <div className="min-w-0 flex-1 desk:grid desk:grid-cols-[minmax(0,1fr)_8rem_11rem_10rem] desk:items-start desk:gap-4">
         <div className="min-w-0">
           <Link
             href={`/admin/works/${r.id}`}

@@ -92,7 +92,13 @@ function PlatformsSection({ data, messages }: { data: PlatformsAdminData; messag
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block text-ui font-semibold">
-                    {p.name_en || p.name_hi} <span lang="hi" className="font-normal text-ink-soft">· {p.name_hi}</span>
+                    {p.name_en || p.name_hi}
+                    {p.name_en && p.name_en !== p.name_hi && (
+                      <span lang="hi" className="font-normal text-ink-soft">
+                        {" "}
+                        · {p.name_hi}
+                      </span>
+                    )}
                   </span>
                   <span className="block text-meta text-ink-soft">{format(m.used, { count: used })}</span>
                 </span>
