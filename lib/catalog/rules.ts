@@ -3,7 +3,7 @@
 // browser's instant filtering use exactly the same logic.
 
 import { normalizeSearchText } from "@/lib/data/search";
-import { LEAF_KINDS, type LeafKind, type WorkSummary } from "@/lib/data/types";
+import { CATALOG_KINDS, type CatalogKind, type WorkSummary } from "@/lib/data/types";
 
 export const CATALOG_FORMATS = ["online", "audiobook", "print"] as const;
 export type CatalogFormat = (typeof CATALOG_FORMATS)[number];
@@ -16,7 +16,7 @@ export type PageSize = (typeof PAGE_SIZES)[number];
 
 export type CatalogParams = {
   q: string;
-  kinds: LeafKind[];
+  kinds: CatalogKind[];
   formats: CatalogFormat[];
   genres: string[];
   platforms: string[];
@@ -63,7 +63,7 @@ export function parseCatalogParams(sp: SearchParams | URLSearchParams): CatalogP
   const page = Number(first(get("page")));
   return {
     q: (first(get("q")) ?? "").trim().slice(0, 100),
-    kinds: list(get("kind")).filter((k): k is LeafKind => (LEAF_KINDS as readonly string[]).includes(k)),
+    kinds: list(get("kind")).filter((k): k is CatalogKind => (CATALOG_KINDS as readonly string[]).includes(k)),
     formats: list(get("format")).filter((f): f is CatalogFormat => (CATALOG_FORMATS as readonly string[]).includes(f)),
     genres: list(get("genre")).filter((g) => /^[a-z0-9-]+$/.test(g)),
     platforms: list(get("platform")).filter((p) => /^[a-z0-9-]+$/.test(p)),
@@ -143,7 +143,7 @@ export function applyCatalog<T extends CatalogItem>(
 
   const matches = all.filter((w) => {
     if (query && !w.searchText.includes(query)) return false;
-    if (params.kinds.length && !params.kinds.includes(w.kind as LeafKind)) return false;
+    if (params.kinds.length && !params.kinds.includes(w.kind as CatalogKind)) return false;
     if (params.formats.length && !w.releases.some((r) => (params.formats as string[]).includes(r.format))) return false;
     if (params.genres.length && !w.genres.some((g) => params.genres.includes(g.slug))) return false;
     if (params.platforms.length && !w.releases.some((r) => params.platforms.includes(r.platform.slug))) return false;

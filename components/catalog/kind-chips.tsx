@@ -1,12 +1,12 @@
 "use client";
 
 import { CheckIcon } from "@/components/icons";
-import { LEAF_KINDS, type LeafKind } from "@/lib/data/types";
+import { CATALOG_KINDS, type CatalogKind } from "@/lib/data/types";
 import type { Messages } from "@/lib/i18n/messages";
 
 type Props = {
-  selected: LeafKind[];
-  onChange: (kinds: LeafKind[]) => void;
+  selected: CatalogKind[];
+  onChange: (kinds: CatalogKind[]) => void;
   messages: Messages["catalog"];
 };
 
@@ -20,7 +20,7 @@ export const chipClass = (active: boolean) =>
 
 /** Kind chips (DESIGN.md §6.12): toggle buttons; "सभी" clears the kind filter. */
 export function KindChips({ selected, onChange, messages: m }: Props) {
-  const toggle = (k: LeafKind) =>
+  const toggle = (k: CatalogKind) =>
     onChange(selected.includes(k) ? selected.filter((s) => s !== k) : [...selected, k]);
   const all = selected.length === 0;
 
@@ -30,7 +30,7 @@ export function KindChips({ selected, onChange, messages: m }: Props) {
         {all && <CheckIcon size={16} />}
         {m.kinds.all}
       </button>
-      {LEAF_KINDS.map((k) => {
+      {CATALOG_KINDS.map((k) => {
         const on = selected.includes(k);
         return (
           <button key={k} type="button" aria-pressed={on} onClick={() => toggle(k)} className={chipClass(on)}>

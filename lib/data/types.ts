@@ -10,6 +10,10 @@ export type ReleaseFormat = Enums<"release_format">;
 export const LEAF_KINDS = ["story", "poem", "novel"] as const satisfies readonly WorkKind[];
 export type LeafKind = (typeof LEAF_KINDS)[number];
 
+/** Kinds listed in the catalog (रचनाएँ): leaf works plus whole series. */
+export const CATALOG_KINDS = ["story", "poem", "novel", "series"] as const satisfies readonly WorkKind[];
+export type CatalogKind = (typeof CATALOG_KINDS)[number];
+
 export const BOOK_KINDS = ["series", "collection", "anthology"] as const satisfies readonly WorkKind[];
 export type BookKind = (typeof BOOK_KINDS)[number];
 
@@ -57,6 +61,8 @@ export type WorkSummary = WorkRef & {
   /** Own releases plus releases of a parent series (Data.md: effective releases). */
   releases: Release[];
   series: SeriesPlacement | null;
+  /** Number of parts (series only; 0 otherwise). */
+  partsCount: number;
   /** Collections and anthologies containing this work. */
   appearsIn: BookRef[];
 };

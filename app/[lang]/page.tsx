@@ -11,6 +11,7 @@ import { Ornament } from "@/components/ui/ornament";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { WorkRow } from "@/components/work/work-row";
 import { getBooks } from "@/lib/data/books";
+import { getCatalogItems } from "@/lib/data/catalog";
 import { imageUrl } from "@/lib/data/images";
 import { getAuthorProfile } from "@/lib/data/site";
 import { getAllWorks, getFeaturedWorks } from "@/lib/data/works";
@@ -23,9 +24,10 @@ import { routesFor } from "@/lib/routes";
 // saved-works section run in the browser.
 export default async function Home() {
   const [m, locale] = await Promise.all([getMessages(), getLocale()]);
-  const [featured, allWorks, books, profile] = await Promise.all([
+  const [featured, allWorks, catalogItems, books, profile] = await Promise.all([
     getFeaturedWorks(locale),
     getAllWorks(locale),
+    getCatalogItems(locale),
     getBooks(locale),
     getAuthorProfile(locale),
   ]);
@@ -35,7 +37,8 @@ export default async function Home() {
   const printedBooks = [...books.own, ...books.anthologies]
     .sort((a, b) => (b.publishedOn ?? "").localeCompare(a.publishedOn ?? ""))
     .slice(0, homeConfig.booksCount);
-  const savedIndex: SavedIndexItem[] = allWorks.map((w) => ({
+  // Anything savable in the catalog (incl. whole series) can show up here.
+  const savedIndex: SavedIndexItem[] = catalogItems.map((w) => ({
     slug: w.slug,
     kind: w.kind,
     title: w.title,

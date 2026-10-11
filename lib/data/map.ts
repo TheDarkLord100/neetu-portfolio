@@ -183,6 +183,7 @@ function buildIndex(store: Store, locale: Locale) {
     genres: genresByWork.get(w.id) ?? [],
     releases: releasesOf(w),
     series: seriesPlacementOf(w),
+    partsCount: w.kind === "series" ? (childrenByParent.get(w.id)?.length ?? 0) : 0,
     appearsIn: appearsInOf(w),
   });
 

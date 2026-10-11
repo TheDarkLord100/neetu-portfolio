@@ -391,7 +391,7 @@ Addresses: `/` home, `/works` catalog, `/work/<slug>` work, `/books` books list,
      - कहानियाँ → `?kind=story`
      - कविताएँ → `?kind=poem`
      - उपन्यास → `?kind=novel`
-     - धारावाहिक उपन्यास → books page, series group (`/books#dharavahik`)
+     - धारावाहिक उपन्यास → `?kind=series`
      - सुनने के लिए (ऑडियोबुक) → `?format=audiobook`
 6. Hairline. **पुस्तकें** ("छपी हुई किताबें, जिन्हें आप घर मँगा सकते हैं") + "सभी पुस्तकें देखें": book strip. Desktop: up to 4 cards in a row (cover 190px, title, detail line, stamp). Phone: rows of thumbnail + title/detail, full-width stamp under each.
 7. Hairline. **About teaser:** photo (~220×270 desktop *(m)*), "नीतू सिंह के बारे में" (`h2`), short bio, "पूरा परिचय पढ़ें" outline button.
@@ -402,7 +402,7 @@ Addresses: `/` home, `/works` catalog, `/work/<slug>` work, `/books` books list,
 
 1. Title "रचनाएँ" (`display`) + intro line (`body`, ink-soft).
 2. Search field + voice button (§6.13), and the voice status line when active.
-3. Kind chips: सभी / कहानी / कविता / उपन्यास.
+3. Kind chips: सभी / कहानी / कविता / उपन्यास / धारावाहिक. A series row opens its series page, shows "धारावाहिक उपन्यास, 2 भाग", and its pills are पढ़ें (भाग 1) and the series' own releases; its parts stay listed individually.
 4. Filters:
    - Desktop: **sidebar** (~310px panel, always open, left), groups separated by hairlines: आपकी सूची (सिर्फ़ सहेजी हुई), कैसे उपलब्ध है (पढ़ने के लिए / सुनने के लिए (ऑडियोबुक) / छपी किताब), विषय, कहाँ मिलेगी. "सभी फ़िल्टर हटाएँ" text button when any filter is active.
    - Phone: full-width outline button "और फ़िल्टर" (with "(n चुने गए)" when active), filter icon left, chevron right, `aria-expanded`. Opens the same groups **inline below it** (not a modal), ending with the primary button "n रचनाएँ दिखाएँ" (closes the panel) and the text button "सभी फ़िल्टर हटाएँ".

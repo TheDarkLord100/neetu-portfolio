@@ -35,7 +35,7 @@ type Props = {
   genres: Genre[];
   platforms: Platform[];
   locale: Locale;
-  messages: Pick<Messages, "catalog" | "release" | "a11y" | "kinds" | "work" | "save" | "site">;
+  messages: Pick<Messages, "catalog" | "release" | "a11y" | "kinds" | "work" | "save" | "site" | "book">;
 };
 
 // True after hydration (false during the server render and the first client render).

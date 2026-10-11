@@ -73,7 +73,7 @@ export function SavedWorks({ index, limit, messages: m }: Props) {
             <ClothCover kind={w.kind} title={w.title} kindLabel={m.kinds[w.kind]} byline={m.site.name} size="small" imageUrl={w.coverUrl} />
             <div className="min-w-0">
               <Link
-                href={routes.work(w.slug)}
+                href={w.kind === "series" ? routes.book(w.slug) : routes.work(w.slug)}
                 lang="hi"
                 className="font-heading text-[1.25rem] leading-snug text-ink underline decoration-turmeric decoration-2 underline-offset-[5px]"
               >
@@ -81,7 +81,11 @@ export function SavedWorks({ index, limit, messages: m }: Props) {
               </Link>
               <p className="text-meta text-ink-soft">{w.meta}</p>
               <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-2">
-                <ActionPills releases={w.releases} workHref={routes.work(w.slug)} messages={m} />
+                <ActionPills
+                  releases={w.releases}
+                  workHref={w.kind === "series" ? routes.book(w.slug) : routes.work(w.slug)}
+                  messages={m}
+                />
                 <button
                   type="button"
                   onClick={() => remove(w.slug)}

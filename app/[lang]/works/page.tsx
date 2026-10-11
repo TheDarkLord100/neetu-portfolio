@@ -43,6 +43,7 @@ async function Catalog({ searchParams }: { searchParams: PageProps<"/[lang]/work
         work: m.work,
         save: m.save,
         site: m.site,
+        book: m.book,
       }}
     />
   );

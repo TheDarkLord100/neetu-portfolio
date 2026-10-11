@@ -18,7 +18,7 @@ export const homeConfig = {
     { label: "stories", href: `${routes.works}?kind=story`, swatch: "var(--cloth-story)" },
     { label: "poems", href: `${routes.works}?kind=poem`, swatch: "var(--cloth-poem)" },
     { label: "novels", href: `${routes.works}?kind=novel`, swatch: "var(--cloth-novel)" },
-    { label: "series", href: `${routes.books}#dharavahik`, swatch: "var(--cloth-series)" },
+    { label: "series", href: `${routes.works}?kind=series`, swatch: "var(--cloth-series)" },
     // No kind of its own: olive, as in the mockup.
     { label: "audiobooks", href: `${routes.works}?format=audiobook`, swatch: "var(--cloth-collection)" },
   ],

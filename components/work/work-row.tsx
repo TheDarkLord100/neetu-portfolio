@@ -30,7 +30,7 @@ export type WorkRowOptions = {
 type Props = WorkRowOptions & {
   work: WorkSummary;
   locale: Locale;
-  messages: Pick<Messages, "release" | "a11y" | "kinds" | "work" | "save" | "site">;
+  messages: Pick<Messages, "release" | "a11y" | "kinds" | "work" | "save" | "site" | "book">;
   className?: string;
 };
 
@@ -54,13 +54,16 @@ export function WorkRow({
 }: Props) {
   const Heading = headingLevel;
   const routes = routesFor(locale);
-  const href = routes.work(work.slug);
+  // A whole series opens its series page; everything else its work page.
+  const href = work.kind === "series" ? routes.book(work.slug) : routes.work(work.slug);
   const date = showDate ? formatMonthYear(work.publishedOn, locale) : null;
 
   // Kind line: "उपन्यास, धारावाहिक का भाग 2" / "उपन्यास, 42 अध्याय" / "कविता"
   const online = work.releases.find((r) => r.format === "online" && !r.inheritedFrom);
   const kindDetail = work.series
     ? format(m.work.seriesPart, { position: work.series.position })
+    : work.kind === "series" && work.partsCount > 0
+      ? format(m.book.partsCount, { count: work.partsCount })
     : online?.chapterCount
       ? format(m.work.chapters, { count: online.chapterCount })
       : null;

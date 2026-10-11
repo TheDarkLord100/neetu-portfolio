@@ -140,10 +140,10 @@ About page: featured awards in full, then a "और सम्मान देख
 
 ## Catalog query rules
 
-- **Lists leaf works only:** `poem`, `story`, `novel` (including series parts). Series, collections and anthologies are reached from their parts and from the Books page.
+- **Lists** `poem`, `story`, `novel` (including series parts) **and whole `series`** (kind chip "धारावाहिक"; the row opens the series page and offers part 1's "पढ़ें" plus the series' own releases). Collections and anthologies are not listed; they are on the Books page.
 - **Effective releases** of a work = its own releases **plus** releases of any parent `series`. So a series-level Kuku FM audiobook shows "सुनें" on भाग 1 and भाग 2, and they match the audiobook filter. Releases of a parent `collection` / `anthology` are **not** inherited; those appear as "इसमें भी शामिल: <book>" instead.
 - **Filters:**
-  - kind (`story` / `poem` / `novel`)
+  - kind (`story` / `poem` / `novel` / `series`)
   - format available (`online` / `audiobook` / `print`, from effective releases)
   - genre
   - platform (from effective releases)

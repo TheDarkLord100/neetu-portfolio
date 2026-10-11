@@ -154,7 +154,8 @@
       "all": "All",
       "story": "Story",
       "poem": "Poem",
-      "novel": "Novel"
+      "novel": "Novel",
+      "series": "Serial"
     },
     "filters": {
       "label": "Filters",
