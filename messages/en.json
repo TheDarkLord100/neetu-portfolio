@@ -124,7 +124,8 @@
   "book": {
     "detail": "{kind}, {publisher}",
     "contributors": "Neetu Singh and {count} other writers",
-    "partsCount": "{count} parts"
+    "partsCount": "{count} parts",
+    "withAudiobook": "full audiobook too"
   },
   "catalog": {
     "meta": {
@@ -304,6 +305,35 @@
       "editor": "Editor:",
       "others": "and {count} other writers",
       "note": "Only Neetu Singh's works are on this website. See the book to read the others."
+    }
+  },
+  "booksPage": {
+    "meta": {
+      "title": "Books"
+    },
+    "heading": "Books",
+    "intro": "Neetu Singh's printed books, anthologies and serial novels. Open any book for its details.",
+    "jumpLabel": "Book groups",
+    "groups": {
+      "own": {
+        "heading": "Neetu Singh's books",
+        "note": "her own printed books"
+      },
+      "anthologies": {
+        "heading": "Anthologies",
+        "note": "books printed with other writers"
+      },
+      "series": {
+        "heading": "Serial novels",
+        "note": "novels written in several parts"
+      }
+    },
+    "footerNote": "Online stories and poems are on the {works} page.",
+    "worksLink": "Works",
+    "empty": {
+      "heading": "No books yet",
+      "body": "Printed books and serial novels will appear here. Until then, read her works.",
+      "action": "See works"
     }
   }
 }

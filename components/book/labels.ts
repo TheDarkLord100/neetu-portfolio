@@ -16,19 +16,31 @@ export function bookKindLabel(book: { kind: WorkKind; contentKinds?: WorkKind[] 
 }
 
 /**
- * Detail line under a book card: "कविता संग्रह, <publisher>",
- * "साझा संकलन, नीतू सिंह और 27 अन्य लेखक", "धारावाहिक उपन्यास, 2 भाग".
+ * Detail line under a book card (DESIGN.md §7.4):
+ * "कविता संग्रह, <publisher>, 2025", "साझा संकलन, नीतू सिंह और 27 अन्य लेखक, 2026",
+ * "2 भाग, पूरा ऑडियोबुक भी".
  */
 export function bookDetail(book: BookSummary, m: M): string {
+  const sep = m.work.listSeparator;
   const kind = bookKindLabel(book, m);
-  if (book.kind === "anthology" && book.contributorsTotal && book.contributorsTotal > 1) {
-    return [kind, format(m.book.contributors, { count: book.contributorsTotal - 1 })].join(m.work.listSeparator);
+  const year = (book.mainRelease?.releasedOn ?? book.publishedOn)?.slice(0, 4) ?? null;
+  if (book.kind === "series") {
+    const hasAudiobook = book.releases.some((r) => r.format === "audiobook");
+    return [
+      book.partsCount > 0 ? format(m.book.partsCount, { count: book.partsCount }) : kind,
+      hasAudiobook ? m.book.withAudiobook : null,
+    ]
+      .filter(Boolean)
+      .join(sep);
   }
-  if (book.kind === "series" && book.partsCount > 0) {
-    return [kind, format(m.book.partsCount, { count: book.partsCount })].join(m.work.listSeparator);
+  if (book.kind === "anthology") {
+    const writers =
+      book.contributorsTotal && book.contributorsTotal > 1
+        ? format(m.book.contributors, { count: book.contributorsTotal - 1 })
+        : null;
+    return [kind, writers, year].filter(Boolean).join(sep);
   }
-  const publisher = book.mainRelease?.publisher;
-  return publisher ? format(m.book.detail, { kind, publisher }) : kind;
+  return [kind, book.mainRelease?.publisher ?? null, year].filter(Boolean).join(sep);
 }
 
 /** Books (series, collection, anthology) have book pages; single printed works keep their work page. */
