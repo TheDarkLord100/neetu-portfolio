@@ -4,12 +4,14 @@ import { ReleaseStamp } from "@/components/release/release-stamp";
 import { releaseAccessibleName } from "@/components/release/release-text";
 import { imageUrl } from "@/lib/data/images";
 import type { BookSummary } from "@/lib/data/types";
+import type { Locale } from "@/lib/i18n/config";
 import { format } from "@/lib/i18n/format";
 import type { Messages } from "@/lib/i18n/messages";
 import { bookDetail, bookHref, bookKindLabel } from "./labels";
 
 type Props = {
   book: BookSummary;
+  locale: Locale;
   messages: Pick<Messages, "kinds" | "book" | "work" | "release" | "a11y" | "cover" | "site">;
   /** Show the main release stamp (default true). */
   showStamp?: boolean;
@@ -27,9 +29,9 @@ const titleLink =
  * the text, full-width stamp underneath. Cover link is hidden from screen
  * readers (the title is the link).
  */
-export function BookCard({ book, messages: m, showStamp = true, headingLevel = "h3", className = "" }: Props) {
+export function BookCard({ book, locale, messages: m, showStamp = true, headingLevel = "h3", className = "" }: Props) {
   const Heading = headingLevel;
-  const href = bookHref(book);
+  const href = bookHref(book, locale);
   const kindLabel = bookKindLabel(book, m);
   const byline = book.kind === "anthology" && book.editor ? format(m.cover.editor, { name: book.editor }) : m.site.name;
   const stamp = showStamp ? book.mainRelease : null;

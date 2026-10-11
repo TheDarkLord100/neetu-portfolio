@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { ClothCover } from "@/components/cover/cloth-cover";
 import { BookmarkIcon } from "@/components/icons";
@@ -8,7 +9,7 @@ import { ActionPills } from "@/components/release/action-pills";
 import type { Release, WorkKind } from "@/lib/data/types";
 import { format } from "@/lib/i18n/format";
 import type { Messages } from "@/lib/i18n/messages";
-import { routes } from "@/lib/routes";
+import { localeOf, routesFor } from "@/lib/routes";
 import { useSavedWorks } from "@/lib/saved";
 
 /** Compact work data the browser needs to show a saved item (prepared on the server). */
@@ -36,6 +37,7 @@ type Props = {
  */
 export function SavedWorks({ index, limit, messages: m }: Props) {
   const { slugs, remove, prune } = useSavedWorks();
+  const routes = routesFor(localeOf(usePathname()));
   const s = m.home.saved;
 
   // Drop saved slugs that no longer resolve (deleted or unpublished works).

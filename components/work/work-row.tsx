@@ -7,7 +7,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { formatMonthYear } from "@/lib/i18n/date";
 import { format } from "@/lib/i18n/format";
 import type { Messages } from "@/lib/i18n/messages";
-import { routes } from "@/lib/routes";
+import { routesFor } from "@/lib/routes";
 import { SaveButton } from "./save-button";
 
 export type WorkRowOptions = {
@@ -53,6 +53,7 @@ export function WorkRow({
   className = "",
 }: Props) {
   const Heading = headingLevel;
+  const routes = routesFor(locale);
   const href = routes.work(work.slug);
   const date = showDate ? formatMonthYear(work.publishedOn, locale) : null;
 

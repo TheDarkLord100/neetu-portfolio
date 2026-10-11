@@ -1,7 +1,8 @@
 import type { BookSummary, WorkKind } from "@/lib/data/types";
 import { format } from "@/lib/i18n/format";
 import type { Messages } from "@/lib/i18n/messages";
-import { routes } from "@/lib/routes";
+import type { Locale } from "@/lib/i18n/config";
+import { routesFor } from "@/lib/routes";
 
 type M = Pick<Messages, "kinds" | "book" | "work">;
 
@@ -31,7 +32,8 @@ export function bookDetail(book: BookSummary, m: M): string {
 }
 
 /** Books (series, collection, anthology) have book pages; single printed works keep their work page. */
-export function bookHref(book: { kind: WorkKind; slug: string }): string {
+export function bookHref(book: { kind: WorkKind; slug: string }, locale: Locale): string {
+  const routes = routesFor(locale);
   return book.kind === "series" || book.kind === "collection" || book.kind === "anthology"
     ? routes.book(book.slug)
     : routes.work(book.slug);

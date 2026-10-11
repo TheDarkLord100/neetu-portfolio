@@ -3,15 +3,17 @@ import { ButtonLink } from "@/components/ui/button-link";
 import { imageUrl } from "@/lib/data/images";
 import type { AuthorProfile } from "@/lib/data/site";
 import type { Messages } from "@/lib/i18n/messages";
-import { routes } from "@/lib/routes";
+import type { Locale } from "@/lib/i18n/config";
+import { routesFor } from "@/lib/routes";
 
 type Props = {
   profile: AuthorProfile | null;
+  locale: Locale;
   messages: Pick<Messages, "home">;
 };
 
 /** About teaser (DESIGN.md §7.1): photo (only when uploaded), heading, short intro, link to About. */
-export function AboutTeaser({ profile, messages: m }: Props) {
+export function AboutTeaser({ profile, locale, messages: m }: Props) {
   const a = m.home.about;
   const photo = profile?.photoPath ? imageUrl(profile.photoPath) : null;
 
@@ -27,7 +29,7 @@ export function AboutTeaser({ profile, messages: m }: Props) {
           {a.heading}
         </h2>
         {profile?.intro && <p className="mt-4 text-body">{profile.intro}</p>}
-        <ButtonLink href={routes.about} chevron className="mt-6">
+        <ButtonLink href={routesFor(locale).about} chevron className="mt-6">
           {a.more}
         </ButtonLink>
       </div>

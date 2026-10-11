@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { enabledLocales } from "@/lib/i18n/config";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
-import { routes } from "@/lib/routes";
+import { routesFor } from "@/lib/routes";
 import { HeaderNav } from "./header-nav";
 import { LanguageSwitch } from "./language-switch";
 
@@ -31,7 +31,7 @@ export async function SiteHeader() {
       <div className="page-container flex flex-col pt-4 desk:flex-row desk:items-center desk:gap-10 desk:py-5">
         <div className="flex items-start justify-between gap-4 pb-3 desk:pb-0">
           <div>
-            <Link href={routes.home} className="inline-block font-heading text-brand text-ink">
+            <Link href={routesFor(locale).home} className="inline-block font-heading text-brand text-ink">
               {site.name}
             </Link>
             <p className="text-meta text-ink-soft">{site.tagline}</p>

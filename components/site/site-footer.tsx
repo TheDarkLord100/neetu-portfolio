@@ -2,8 +2,8 @@ import { cacheLife } from "next/cache";
 import Link from "next/link";
 import { getAuthorProfile, getPlatforms } from "@/lib/data/site";
 import { format } from "@/lib/i18n/format";
-import { getMessages } from "@/lib/i18n/messages";
-import { routes } from "@/lib/routes";
+import { getLocale, getMessages } from "@/lib/i18n/messages";
+import { routesFor } from "@/lib/routes";
 
 /** Year of the build (keeps the footer static; updates on every deploy). */
 async function buildYear() {
@@ -25,12 +25,14 @@ function ExternalLink({ href, children, newWindow }: { href: string; children: R
 
 /** Same footer on every page (DESIGN.md §6.2). */
 export async function SiteFooter() {
+  const locale = await getLocale();
   const [{ site, nav, footer, a11y }, profile, platforms, year] = await Promise.all([
     getMessages(),
-    getAuthorProfile(),
-    getPlatforms(),
+    getAuthorProfile(locale),
+    getPlatforms(locale),
     buildYear(),
   ]);
+  const routes = routesFor(locale);
 
   const email = profile?.email ?? null;
   const profileLinks = platforms.filter((p) => p.profileUrl);

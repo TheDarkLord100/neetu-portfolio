@@ -11,6 +11,7 @@ export const homeConfig = {
   savedCount: 4,
   /**
    * "क्या पढ़ना चाहेंगे?" rows. `label` is a key in messages `home.browse`;
+   * `href` is unprefixed (the panel adds the language prefix);
    * `swatch` is a DESIGN.md colour variable.
    */
   browseRows: [

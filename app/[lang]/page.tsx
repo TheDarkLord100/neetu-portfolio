@@ -17,7 +17,7 @@ import { getAllWorks, getFeaturedWorks } from "@/lib/data/works";
 import { homeConfig } from "@/lib/config/home";
 import { formatMonthYear } from "@/lib/i18n/date";
 import { getLocale, getMessages } from "@/lib/i18n/messages";
-import { routes } from "@/lib/routes";
+import { routesFor } from "@/lib/routes";
 
 // मुखपृष्ठ (DESIGN.md §7.1). Fully pre-rendered; only the carousel and the
 // saved-works section run in the browser.
@@ -30,6 +30,7 @@ export default async function Home() {
     getAuthorProfile(locale),
   ]);
 
+  const routes = routesFor(locale);
   const latest = allWorks.slice(0, homeConfig.latestCount);
   const printedBooks = [...books.own, ...books.anthologies]
     .sort((a, b) => (b.publishedOn ?? "").localeCompare(a.publishedOn ?? ""))
@@ -53,7 +54,7 @@ export default async function Home() {
               key: item.slug,
               title: item.title,
               cloth: CLOTH_VAR[item.kind],
-              content: <FeaturedSlide item={item} messages={m} priority={i === 0} />,
+              content: <FeaturedSlide item={item} locale={locale} messages={m} priority={i === 0} />,
             }))}
           />
         )}
@@ -81,7 +82,7 @@ export default async function Home() {
               {m.home.latest.viewAll}
             </ButtonLink>
           </section>
-          <BrowsePanel messages={m} className="self-start" />
+          <BrowsePanel locale={locale} messages={m} className="self-start" />
         </div>
       </div>
 
@@ -100,7 +101,7 @@ export default async function Home() {
             />
             <div className="mt-10 grid gap-8 border-t border-line pt-8 desk:grid-cols-4 desk:gap-12 desk:border-t-0 desk:pt-0">
               {printedBooks.map((book) => (
-                <BookCard key={book.slug} book={book} messages={m} className="border-b border-line pb-8 desk:border-b-0 desk:pb-0" />
+                <BookCard key={book.slug} book={book} locale={locale} messages={m} className="border-b border-line pb-8 desk:border-b-0 desk:pb-0" />
               ))}
             </div>
             <ButtonLink href={routes.books} chevron className="mt-8 desk:hidden">
@@ -112,7 +113,7 @@ export default async function Home() {
 
       <div className="border-t border-line">
         <div className="page-container py-16 desk:py-20">
-          <AboutTeaser profile={profile} messages={m} />
+          <AboutTeaser profile={profile} locale={locale} messages={m} />
         </div>
       </div>
     </>

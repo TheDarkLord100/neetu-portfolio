@@ -5,11 +5,13 @@ import { ReleaseList } from "@/components/release/release-list";
 import { imageUrl } from "@/lib/data/images";
 import type { BookSummary, WorkSummary } from "@/lib/data/types";
 import { format } from "@/lib/i18n/format";
+import type { Locale } from "@/lib/i18n/config";
 import type { Messages } from "@/lib/i18n/messages";
 import { Eyebrow } from "./eyebrow";
 
 type Props = {
   item: WorkSummary | BookSummary;
+  locale: Locale;
   messages: Messages;
   /** Load the cover eagerly (first slide). */
   priority?: boolean;
@@ -18,9 +20,9 @@ type Props = {
 const isBook = (item: WorkSummary | BookSummary): item is BookSummary => "partsCount" in item;
 
 /** One featured slide: big cover + eyebrow, title, kind line, synopsis, stamps, link. */
-export function FeaturedSlide({ item, messages: m, priority = false }: Props) {
+export function FeaturedSlide({ item, locale, messages: m, priority = false }: Props) {
   const book = isBook(item) ? item : null;
-  const href = bookHref(item);
+  const href = bookHref(item, locale);
   const kindLabel = book ? bookKindLabel(book, m) : m.kinds[item.kind];
   const byline = book?.kind === "anthology" && book.editor ? format(m.cover.editor, { name: book.editor }) : m.site.name;
 
